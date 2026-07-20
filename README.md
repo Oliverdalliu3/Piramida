@@ -1,0 +1,7 @@
+- `education.html` — page markup only
+- `assets/css/theme.css` — fonts, colors, resets, shared typography
+- `assets/css/header.css` — header and fullscreen menu
+- `assets/css/footer.css` — footer and glow effects
+- `assets/css/education.css` — Education carousel styles
+- `assets/js/menu.js` — fullscreen menu behavior
+- `assets/js/education-carousel.js` — carousel data and interaction
