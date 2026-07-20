@@ -30,15 +30,6 @@
   will-change: transform;
 }
 
-@media (min-width: 767px) {
-  #track {
-    position: relative;
-    z-index: 1;
-    height: 80%;
-    will-change: transform;
-  }
-}
-
 .card {
   position: absolute;
   bottom: 0;
@@ -53,17 +44,6 @@
   object-fit: cover;
   pointer-events: none;
   user-select: none;
-}
-
-@media (min-width: 768px) {
-  .education-main {
-    background: linear-gradient(
-      to bottom,
-      var(--color-navy) 0%,
-      var(--color-navy) 45%,
-      var(--color-black) 100%
-    );
-  }
 }
 
 @media (max-width: 767px) {

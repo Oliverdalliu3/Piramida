@@ -195,7 +195,7 @@
 
           viewport.style.height = isMobile()
             ? `${MOBILE_CARD_H}px`
-            : `${MAX_H + 20}px`;
+            : `${MAX_H}px`;
 
           track.style.width = `${TOTAL * slotWidth}px`;
         }
