@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/popup.css" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              anton: ["Anton", "Impact", "sans-serif"],
+              jakarta: ["Plus Jakarta Sans", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-image: url("./assets/images/BG.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .desktop-page-background {
+        background: transparent !important;
+        background-image: url("./assets/images/BG.png") !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          background-image: none;
+          background-color: #000929;
+        }
+
+        .desktop-page-background {
+          background: #000929 !important;
+          background-image: none !important;
+        }
+      }
+    </style>
+
+    <title>Popup</title>
+  </head>
+
+  <body class="min-h-screen overflow-x-hidden bg-[#000929] text-white">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="desktop-page-background">
+      <!-- Navbar -->
+      <header
+        class="site-header absolute top-0 left-0 w-full z-50 bg-transparent"
+      >
+        <nav class="header-inner">
+          <a href="/" class="header-logo" aria-label="Piramida homepage">
+            <img src="./assets/images/logo piramida.svg" alt="Piramida logo" />
+          </a>
+
+          <button
+            id="openMenu"
+            class="menu-open-button"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <img
+              src="./assets/images/menu icon.svg"
+              alt=""
+              class="h-8 w-8 object-contain"
+            />
+          </button>
+        </nav>
+      </header>
+
+      <!-- Fullscreen menu -->
+      <div id="mobileMenu" aria-hidden="true">
+        <!-- Close button -->
+        <button
+          id="closeMenu"
+          class="menu-close-button"
+          type="button"
+          aria-label="Close menu"
+        >
+          <img
+            src="./assets/images/Cross.svg"
+            alt=""
+            class="h-8 w-8 object-contain"
+          />
+        </button>
+
+        <div class="menu-layout">
+          <!-- Left side -->
+          <section class="menu-left">
+            <img
+              src="./assets/images/logo piramida.svg"
+              alt="Piramida logo"
+              class="menu-logo"
+            />
+
+            <nav class="menu-main-navigation" aria-label="Main navigation">
+              <ul>
+                <li>
+                  <a href="#" class="mobile-main-link">Education</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Innovation</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Business</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Art &amp; Culture</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Events</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Attractions</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Museum </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Rent a Space</a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+
+          <!-- Right side -->
+          <section class="menu-right">
+            <div class="menu-right-content">
+              <nav
+                class="menu-secondary-links"
+                aria-label="Secondary navigation"
+              >
+                <a href="#" class="mobile-small-link">About us</a>
+                <a href="#" class="mobile-small-link">News</a>
+                <a href="#" class="mobile-small-link">Careers</a>
+                <a href="#" class="mobile-small-link">Contact</a>
+              </nav>
+
+              <div class="menu-bottom-content">
+                <div class="menu-policy-links">
+                  <a href="#" class="mobile-footer-link">
+                    Terms &amp; Conditions
+                  </a>
+
+                  <a href="#" class="mobile-footer-link">Privacy Policy</a>
+                </div>
+
+                <div class="menu-social-links">
+                  <a href="#" aria-label="Facebook">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14 8H17V4H14C10.7 4 9 6 9 9V11H6V15H9V22H13V15H16L17 11H13V9C13 8.3 13.3 8 14 8Z"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+
+                  <a href="#" aria-label="Instagram">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="4"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <main id="main-content">
+        <section class="registration-section">
+          <!-- Decorative green background -->
+          <div class="registration-shape" aria-hidden="true"></div>
+
+          <!-- Close button -->
+          <button
+            class="registration-close"
+            type="button"
+            aria-label="Close registration form"
+          >
+            <img
+              src="./assets/images/Cross.svg"
+              alt=""
+              class="h-7 w-7 object-contain"
+            />
+          </button>
+
+          <!-- White form card -->
+          <div class="registration-card">
+            <button
+              class="registration-close registration-close-mobile"
+              type="button"
+              aria-label="Close registration form"
+            >
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="registration-title">Registration Form</div>
+            <form class="registration-form">
+              <div class="registration-field">
+                <label class="sr-only" for="fullName">Full name</label>
+
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  placeholder="Full Name*"
+                  required
+                />
+              </div>
+
+              <div class="registration-field">
+                <label class="sr-only" for="email">Email</label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+
+              <div class="registration-field registration-phone-field">
+                <label class="sr-only" for="phone">Phone</label>
+
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="Phone"
+                  required
+                />
+
+                <span
+                  class="registration-field-arrow"
+                  aria-hidden="true"
+                ></span>
+              </div>
+
+              <label class="registration-terms">
+                <input type="checkbox" name="terms" required />
+
+                <span class="registration-checkbox" aria-hidden="true"></span>
+
+                <span class="md:text-[16px] text-[14px]">
+                  Pranoj Kushtet dhe Afatet dhe Politika e Privatësisë
+                </span>
+              </label>
+
+              <button class="registration-submit" type="submit">
+                <span class="md:text-[18px] text-[16px]">Submit</span>
+
+                <svg
+                  class="registration-submit-arrow"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 12h14M13 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./assets/js/menu.js" defer></script>
+    <script src="./assets/js/education-carousel.js" defer></script>
+  </body>
+</html>
