@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/piramida-popup.css" />
+
+    <title>Piramida Corners - Mulliri Cafe</title>
+  </head>
+
+  <body
+    class="event-background-page min-h-screen overflow-x-hidden bg-[#000929] text-white"
+  >
+    <div class="event-background-shell">
+      <!-- Navbar -->
+      <header
+        class="site-header absolute top-0 left-0 w-full z-50 bg-transparent"
+      >
+        <nav class="header-inner">
+          <a href="/" class="header-logo" aria-label="Piramida homepage">
+            <img src="./assets/images/logo piramida.svg" alt="Piramida logo" />
+          </a>
+
+          <button
+            id="openMenu"
+            class="menu-open-button"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <img
+              src="./assets/images/menu icon.svg"
+              alt=""
+              class="h-8 w-8 object-contain"
+            />
+          </button>
+        </nav>
+      </header>
+
+      <!-- Fullscreen menu -->
+      <div id="mobileMenu" aria-hidden="true">
+        <!-- Close button -->
+        <button
+          id="closeMenu"
+          class="menu-close-button"
+          type="button"
+          aria-label="Close menu"
+        >
+          <img
+            src="./assets/images/Cross.svg"
+            alt=""
+            class="h-8 w-8 object-contain"
+          />
+        </button>
+
+        <div class="menu-layout">
+          <!-- Left side -->
+          <section class="menu-left">
+            <img
+              src="./assets/images/logo piramida.svg"
+              alt="Piramida logo"
+              class="menu-logo"
+            />
+
+            <nav class="menu-main-navigation" aria-label="Main navigation">
+              <ul>
+                <li>
+                  <a href="#" class="mobile-main-link">Education</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Innovation</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Business</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Art &amp; Culture</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Events</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Attractions</a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Museum </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link">Rent a Space</a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+
+          <!-- Right side -->
+          <section class="menu-right">
+            <div class="menu-right-content">
+              <nav
+                class="menu-secondary-links"
+                aria-label="Secondary navigation"
+              >
+                <a href="#" class="mobile-small-link">About us</a>
+                <a href="#" class="mobile-small-link">News</a>
+                <a href="#" class="mobile-small-link">Careers</a>
+                <a href="#" class="mobile-small-link">Contact</a>
+              </nav>
+
+              <div class="menu-bottom-content">
+                <div class="menu-policy-links">
+                  <a href="#" class="mobile-footer-link">
+                    Terms &amp; Conditions
+                  </a>
+
+                  <a href="#" class="mobile-footer-link">Privacy Policy</a>
+                </div>
+
+                <div class="menu-social-links">
+                  <a href="#" aria-label="Facebook">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14 8H17V4H14C10.7 4 9 6 9 9V11H6V15H9V22H13V15H16L17 11H13V9C13 8.3 13.3 8 14 8Z"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+
+                  <a href="#" aria-label="Instagram">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="4"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <main id="main-content" class="place-popup-page">
+        <section class="place-popup-section" aria-labelledby="place-title">
+          <div class="place-popup-shape" aria-hidden="true"></div>
+
+          <button class="place-popup-close" type="button" aria-label="Close">
+            <img src="./assets/images/Cross.svg" alt="" />
+          </button>
+
+          <article
+            id="placePopupCard"
+            class="place-popup-card"
+            data-business-id="mulliri"
+          >
+            <header class="place-popup-header">
+              <div id="placeLogo" class="place-popup-logo" aria-hidden="true">
+                mulliri
+              </div>
+              <div>
+                <h1 id="place-title">Mulliri</h1>
+                <p id="placeCategory">Cafe</p>
+              </div>
+            </header>
+
+            <div class="place-popup-gallery">
+              <img
+                id="placeGalleryImage"
+                src="./assets/images/24fd138e4c487270d6656b18bacb04deac6199b3 (1).jpg"
+                alt="Mulliri cafe interior"
+              />
+
+              <div
+                id="placeGalleryDots"
+                class="place-gallery-dots"
+                aria-label="Gallery navigation"
+              ></div>
+
+              <button
+                class="place-gallery-button place-gallery-button-prev"
+                type="button"
+                aria-label="Previous image"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 6L9 12L15 18" />
+                </svg>
+              </button>
+
+              <button
+                class="place-gallery-button place-gallery-button-next"
+                type="button"
+                aria-label="Next image"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6L15 12L9 18" />
+                </svg>
+              </button>
+            </div>
+
+            <p id="placeDescription" class="place-popup-description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+
+            <p class="place-popup-location">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 21S6.5 16.2 6.5 10.8A5.5 5.5 0 0 1 12 5.3A5.5 5.5 0 0 1 17.5 10.8C17.5 16.2 12 21 12 21Z"
+                />
+                <circle cx="12" cy="10.8" r="1.7" />
+              </svg>
+              <span id="placeLocationValue">Location: Floor 4</span>
+            </p>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="./assets/js/menu.js" defer></script>
+    <script src="./assets/js/education-carousel.js" defer></script>
+    <script>
+      const galleryItems = [
+        {
+          id: "mulliri-main-interior",
+          businessId: "mulliri",
+          image:
+            "./assets/images/24fd138e4c487270d6656b18bacb04deac6199b3 (1).jpg",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+          location: "Location: Floor 4",
+          alt: "Mulliri cafe interior",
+        },
+        {
+          id: "mulliri-lounge-seating",
+          businessId: "mulliri",
+          image:
+            "./assets/images/4d4494e51518b0723ba377d776658e219fecc676 (1).jpg",
+          description:
+            "The second scene highlights the warm textures and social energy of the space, with a cozy layout designed for lingering conversations.",
+          location: "Location: Floor 5",
+          alt: "Mulliri lounge seating",
+        },
+        {
+          id: "mulliri-open-space",
+          businessId: "mulliri",
+          image:
+            "./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg",
+          description:
+            "A brighter view of the venue reveals open corners, natural light, and a refined setting that works beautifully for events and visits.",
+          location: "Location: Floor 6",
+          alt: "Mulliri open space view",
+        },
+      ];
+
+      const galleryImage = document.getElementById("placeGalleryImage");
+      const galleryDots = document.getElementById("placeGalleryDots");
+      const placePopupCard = document.getElementById("placePopupCard");
+      const description = document.getElementById("placeDescription");
+      const locationValue = document.getElementById("placeLocationValue");
+      const gallery = document.querySelector(".place-popup-gallery");
+      const prevButton = document.querySelector(".place-gallery-button-prev");
+      const nextButton = document.querySelector(".place-gallery-button-next");
+
+      let currentSlide = 0;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let wheelLocked = false;
+
+      function renderSlide(index) {
+        const item = galleryItems[index];
+        if (!item) return;
+
+        galleryImage.src = item.image;
+        galleryImage.alt = item.alt;
+        galleryImage.dataset.imageId = item.id;
+        galleryImage.dataset.businessId = item.businessId;
+        placePopupCard.dataset.businessId = item.businessId;
+        description.textContent = item.description;
+        locationValue.textContent = item.location;
+
+        Array.from(galleryDots.children).forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === index);
+        });
+      }
+
+      function showSlide(index) {
+        currentSlide = (index + galleryItems.length) % galleryItems.length;
+        renderSlide(currentSlide);
+      }
+
+      galleryItems.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Go to image ${index + 1}`);
+        dot.addEventListener("click", () => showSlide(index));
+        galleryDots.appendChild(dot);
+      });
+
+      prevButton?.addEventListener("click", () => showSlide(currentSlide - 1));
+      nextButton?.addEventListener("click", () => showSlide(currentSlide + 1));
+
+      gallery?.addEventListener(
+        "touchstart",
+        (event) => {
+          const touch = event.touches[0];
+          touchStartX = touch.clientX;
+          touchStartY = touch.clientY;
+        },
+        { passive: true },
+      );
+
+      gallery?.addEventListener(
+        "touchend",
+        (event) => {
+          const touch = event.changedTouches[0];
+          const deltaX = touch.clientX - touchStartX;
+          const deltaY = touch.clientY - touchStartY;
+
+          if (Math.abs(deltaX) < 36 || Math.abs(deltaX) < Math.abs(deltaY)) {
+            return;
+          }
+
+          showSlide(currentSlide + (deltaX < 0 ? 1 : -1));
+        },
+        { passive: true },
+      );
+
+      gallery?.addEventListener(
+        "wheel",
+        (event) => {
+          const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY)
+            ? event.deltaX
+            : event.deltaY;
+
+          if (Math.abs(delta) < 18 || wheelLocked) return;
+
+          event.preventDefault();
+          showSlide(currentSlide + (delta > 0 ? 1 : -1));
+          wheelLocked = true;
+          window.setTimeout(() => {
+            wheelLocked = false;
+          }, 450);
+        },
+        { passive: false },
+      );
+
+      renderSlide(currentSlide);
+    </script>
+  </body>
+</html>
