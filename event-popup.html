@@ -21,41 +21,14 @@
       };
     </script>
 
-    <style>
-      body {
-        background-image: url("./assets/images/BG.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-
-      .desktop-page-background {
-        background: transparent !important;
-        background-image: url("./assets/images/BG.png") !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-        background-size: cover !important;
-      }
-
-      @media (max-width: 600px) {
-        body {
-          background-image: none;
-          background-color: #000929;
-        }
-
-        .desktop-page-background {
-          background: #000929 !important;
-          background-image: none !important;
-        }
-      }
-    </style>
-
     <title>Popup</title>
   </head>
 
-  <body class="min-h-screen overflow-x-hidden bg-[#000929] text-white">
+  <body
+    class="event-background-page min-h-screen overflow-x-hidden bg-[#000929] text-white"
+  >
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <div class="desktop-page-background">
+    <div class="event-background-shell">
       <!-- Navbar -->
       <header
         class="site-header absolute top-0 left-0 w-full z-50 bg-transparent"

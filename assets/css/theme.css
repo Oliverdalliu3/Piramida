@@ -70,6 +70,22 @@ body.menu-open {
   background-color: var(--color-navy);
 }
 
+.event-background-page {
+  background-color: var(--color-navy);
+  background-image: url("../images/BG.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.event-background-shell {
+  background: transparent;
+  background-image: url("../images/BG.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 @media (min-width: 768px) {
   .desktop-page-background {
     background-color: var(--color-black);
@@ -86,6 +102,14 @@ body.menu-open {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+}
+
+@media (max-width: 600px) {
+  .event-background-page,
+  .event-background-shell {
+    background-color: var(--color-navy);
+    background-image: none;
   }
 }
 

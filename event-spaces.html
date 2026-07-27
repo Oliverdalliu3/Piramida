@@ -21,40 +21,13 @@
       };
     </script>
 
-    <style>
-      body {
-        background-image: url("./assets/images/BG.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-
-      .desktop-page-background {
-        background: transparent !important;
-        background-image: url("./assets/images/BG.png") !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-        background-size: cover !important;
-      }
-
-      @media (max-width: 600px) {
-        body {
-          background-image: none;
-          background-color: #000929;
-        }
-
-        .desktop-page-background {
-          background: #000929 !important;
-          background-image: none !important;
-        }
-      }
-    </style>
-
     <title>Book an Event Space</title>
   </head>
 
-  <body class="min-h-screen overflow-x-hidden bg-[#000929] text-white">
-    <div class="desktop-page-background">
+  <body
+    class="event-background-page min-h-screen overflow-x-hidden bg-[#000929] text-white"
+  >
+    <div class="event-background-shell">
       <!-- Navbar -->
       <header
         class="site-header absolute top-0 left-0 w-full z-50 bg-transparent"
