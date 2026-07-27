@@ -1,0 +1,316 @@
+.rent-space-main {
+  min-height: 100vh;
+  padding: 72px 24px 32px;
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.rent-space-title,
+.rent-space-card-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.rent-space-title {
+  margin: 0;
+  color: var(--color-lime);
+  font-size: 38px;
+  line-height: 1;
+}
+
+.rent-space-card-list {
+  display: grid;
+  gap: 25px;
+  width: min(100%, 380px);
+  max-width: 380px;
+  margin-top: 25px;
+  margin-left: 1px;
+}
+
+.rent-space-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 333 / 326;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #111a36;
+  isolation: isolate;
+}
+
+.rent-space-card-image,
+.rent-space-card-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rent-space-card-image {
+  z-index: 0;
+  object-fit: cover;
+  transform: scale(1.01);
+}
+
+.rent-space-card-image-event {
+  object-position: 50% 46%;
+}
+
+.rent-space-card-image-leasing {
+  object-position: 50% 54%;
+}
+
+.rent-space-card-shade {
+  z-index: 1;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 9, 41, 0) 35%,
+      rgba(0, 9, 41, 0.18) 58%,
+      rgba(0, 0, 0, 0.72) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0) 100%
+    );
+}
+
+.rent-space-card-title {
+  position: absolute;
+  left: 23px;
+  bottom: 22px;
+  z-index: 2;
+  color: var(--color-white);
+  font-size: 32px;
+  line-height: 0.86;
+  transition: color 180ms ease;
+}
+
+.rent-space-card:hover .rent-space-card-title,
+.rent-space-card:focus-visible .rent-space-card-title {
+  color: var(--color-lime);
+}
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width: 640px) {
+  .desktop-page-background {
+    min-height: 100vh;
+    background: var(--color-navy);
+  }
+
+  .header-logo,
+  .menu-open-button {
+    margin-top: 20px;
+  }
+
+  .rent-space-main {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    background: var(--color-navy);
+  }
+
+  .rent-space-main::before,
+  .rent-space-main::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* Top-right green shape */
+  .rent-space-main::before {
+    top: 0;
+    right: 0;
+    z-index: 3;
+    width: 19.3vw;
+    height: 17.4vw;
+    min-width: 136px;
+    min-height: 122px;
+    max-width: 285px;
+    max-height: 255px;
+    background: linear-gradient(135deg, #79e45b 0%, var(--color-lime) 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 77%);
+  }
+
+  /* Left green triangle */
+  .rent-space-main::after {
+    top: 109px;
+    left: 18px;
+    z-index: 1;
+    width: 73px;
+    height: 241px;
+    background: linear-gradient(180deg, var(--color-lime) 0%, #79c947 100%);
+    clip-path: polygon(60% 0, 100% 90%, 0 100%);
+  }
+
+  .rent-space-title {
+    position: absolute;
+    top: 72px;
+    left: 55px;
+    z-index: 4;
+    margin: 0;
+    padding: 0 30px 25px 0;
+    background: var(--color-navy);
+    color: var(--color-white);
+    font-size: 36px;
+    line-height: 0.9;
+    white-space: nowrap;
+  }
+
+  .rent-space-card-list {
+    position: absolute;
+    top: 71px;
+    left: 55px;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    width: calc(100vw - 113px);
+    max-width: none;
+    margin: 0;
+  }
+
+  .rent-space-card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 289 / 285;
+    border-radius: 0;
+  }
+
+  .rent-space-card:first-child .rent-space-card-image {
+    object-position: 50% 47%;
+  }
+
+  .rent-space-card:nth-child(2) .rent-space-card-image {
+    object-position: 50% 54%;
+  }
+
+  .rent-space-card-title {
+    left: 23px;
+    bottom: 24px;
+    font-size: 32px;
+    line-height: 0.86;
+  }
+
+  .rent-space-card:first-child .rent-space-card-title {
+    bottom: 25px;
+  }
+}
+
+/* =====================================================
+   MEDIUM DESKTOP
+===================================================== */
+
+@media (min-width: 800px) {
+  .header-logo,
+  .menu-open-button {
+    margin-top: clamp(20px, 2.8vw, 28px);
+  }
+
+  .rent-space-main::after {
+    top: clamp(109px, 15.5vw, 180px);
+    left: clamp(18px, 2.55vw, 38px);
+    width: clamp(73px, 10.2vw, 125px);
+    height: clamp(241px, 34.2vw, 420px);
+  }
+
+  .rent-space-title {
+    top: clamp(72px, 10.2vw, 120px);
+    left: clamp(55px, 7.8vw, 95px);
+    font-size: clamp(36px, 4.4vw, 54px);
+  }
+
+  .rent-space-card-list {
+    top: clamp(71px, 10.1vw, 119px);
+    left: clamp(55px, 7.8vw, 95px);
+    gap: clamp(14px, 2vw, 26px);
+    width: calc(100vw - clamp(113px, 15.9vw, 194px));
+  }
+
+  .rent-space-card-title {
+    left: clamp(23px, 3.2vw, 40px);
+    bottom: clamp(24px, 3.4vw, 42px);
+    font-size: clamp(32px, 4.5vw, 54px);
+  }
+
+  .rent-space-card:first-child .rent-space-card-title {
+    bottom: clamp(25px, 3.5vw, 44px);
+  }
+}
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (min-width: 1200px) {
+  .rent-space-main {
+    min-height: 100vh;
+  }
+
+  .rent-space-main::before {
+    width: min(19.3vw, 285px);
+    height: min(17.4vw, 255px);
+  }
+
+  .rent-space-main::after {
+    top: 120px;
+    left: 38px;
+    width: 125px;
+    height: 625px;
+  }
+
+  .rent-space-title {
+    top: 119px;
+    left: 95px;
+    font-size: 80px;
+  }
+
+  .rent-space-card-list {
+    top: 119px;
+    left: 95px;
+    gap: 26px;
+    width: calc(100vw - 194px);
+  }
+
+  .rent-space-card-title {
+    left: 40px;
+    bottom: 42px;
+    font-size: 54px;
+  }
+
+  .rent-space-card:first-child .rent-space-card-title {
+    bottom: 44px;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+  .rent-space-main {
+    padding-inline: 20px;
+  }
+
+  .rent-space-title {
+    font-size: 34px;
+  }
+
+  .rent-space-card {
+    aspect-ratio: 333 / 326;
+  }
+}
+
+@media (max-width: 639px) {
+  .header-logo,
+  .menu-open-button {
+    margin-top: 20px;
+  }
+}
