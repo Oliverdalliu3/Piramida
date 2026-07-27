@@ -1,0 +1,341 @@
+.job-application-section,
+.job-application-section * {
+  box-sizing: border-box;
+}
+
+.job-application-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100svh;
+  padding: clamp(120px, 12vh, 150px) 24px 70px;
+  overflow: hidden;
+}
+
+.job-application-shape {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 640px;
+  height: 700px;
+  background: radial-gradient(
+    175.53% 173.66% at -4.11% -4.11%,
+    #22c55e 13.77%,
+    #bef264 46.4%,
+    rgba(203, 255, 0, 0) 84.99%
+  );
+  clip-path: polygon(9% 6%, 98% 0%, 91% 86%, 0% 100%);
+  transform: translate(-50%, -50%) rotate(180deg);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.job-application-close {
+  position: absolute;
+  top: calc(50% - 315px);
+  left: calc(50% + 260px);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.job-application-close img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.job-application-close:hover {
+  opacity: 0.7;
+  transform: rotate(90deg);
+}
+
+.job-application-close:focus-visible {
+  outline: 2px solid #cbff00;
+  outline-offset: 4px;
+}
+
+.job-application-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 530px);
+  padding: 28px 45px 44px;
+  background-color: #ffffff;
+  color: #171717;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+}
+
+.job-application-close-mobile {
+  display: none;
+}
+
+.job-application-title {
+  margin: 0 0 4px;
+  color: #171717;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.job-application-subtitle {
+  margin: 0 0 30px;
+  color: #171717;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.job-application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.job-application-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 21px;
+}
+
+.job-application-field {
+  width: 100%;
+  min-width: 0;
+}
+
+.job-application-field input,
+.job-application-field textarea,
+.job-application-upload {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  background-color: #f5f5f5;
+  color: #171717;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.job-application-field input {
+  height: 51px;
+  padding: 0 20px;
+}
+
+.job-application-field textarea {
+  min-height: 50px;
+  padding: 15px 20px;
+  resize: vertical;
+}
+
+.job-application-field input::placeholder,
+.job-application-field textarea::placeholder {
+  color: #3f3f3f;
+  opacity: 1;
+}
+
+.job-application-field input:focus,
+.job-application-field textarea:focus,
+.job-application-upload:focus-within {
+  border-color: #171717;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(203, 255, 0, 0.22);
+}
+
+.job-application-upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 51px;
+  padding: 0 16px 0 20px;
+  cursor: pointer;
+}
+
+.job-application-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.job-application-upload-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: #050505;
+}
+
+.job-application-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 50px;
+  margin-top: 1px;
+  padding: 10px 24px;
+  border: 0;
+  border-radius: 999px;
+  background-color: #cbff00;
+  color: #050505;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.job-application-submit:hover {
+  background-color: #b9e900;
+}
+
+.job-application-submit:active {
+  transform: scale(0.99);
+}
+
+.job-application-submit:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+}
+
+.job-application-submit-arrow {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  transition: transform 180ms ease;
+}
+
+.job-application-submit:hover .job-application-submit-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+  .job-application-section {
+    align-items: flex-center;
+    padding: 96px 17px 40px;
+    overflow: visible;
+  }
+
+  .job-application-shape {
+    display: none;
+  }
+
+  .job-application-close {
+    display: none;
+  }
+
+  .job-application-card {
+    width: 100%;
+    padding: 30px 20px 34px;
+    border-radius: 24px;
+  }
+
+  .job-application-close-mobile {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .job-application-close-mobile:hover {
+    opacity: 0.7;
+    transform: rotate(90deg);
+  }
+
+  .job-application-close-mobile::before,
+  .job-application-close-mobile::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 2px;
+    border-radius: 999px;
+    background-color: #666666;
+    transform-origin: center;
+  }
+
+  .job-application-close-mobile::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .job-application-close-mobile::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .job-application-close-mobile:focus-visible {
+    outline: 2px solid #171717;
+    outline-offset: 2px;
+  }
+
+  .job-application-title {
+    padding: 0 30px;
+    font-size: 20px;
+  }
+
+  .job-application-subtitle {
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+
+  .job-application-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .job-application-form {
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .job-application-field input,
+  .job-application-field textarea,
+  .job-application-upload,
+  .job-application-close,
+  .job-application-close-mobile,
+  .job-application-submit,
+  .job-application-submit-arrow {
+    transition: none;
+  }
+}
