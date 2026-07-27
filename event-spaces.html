@@ -6,15 +6,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./assets/css/theme.css" />
     <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
     <link rel="stylesheet" href="./assets/css/event-spaces.css" />
+    <link rel="stylesheet" href="./assets/css/event-spaces-popup.css" />
 
-    <title>Book an Event Space</title>
+    <title>Event Spaces</title>
   </head>
 
-  <body
-    class="event-background-page min-h-screen overflow-x-hidden bg-[#000929] text-white"
-  >
-    <div class="event-background-shell">
+  <body class="min-h-screen overflow-x-hidden text-white">
+    <div class="desktop-page-background">
       <!-- Navbar -->
       <header
         class="site-header absolute top-0 left-0 w-full z-50 bg-transparent"
@@ -175,176 +175,889 @@
         </div>
       </div>
 
-      <main id="main-content">
-        <section class="event-space-section">
-          <!-- Decorative green background -->
-          <div class="event-space-shape" aria-hidden="true"></div>
+      <main id="main-content" class="event-spaces-main">
+        <section
+          class="event-spaces-desktop"
+          aria-labelledby="event-spaces-desktop-title"
+        >
+          <div class="event-spaces-desktop-copy">
+            <div
+              id="event-spaces-desktop-title"
+              class="event-spaces-desktop-title"
+            >
+              <span>Event</span><span>Spaces</span>
+            </div>
 
-          <!-- Close button -->
-          <button
-            class="event-space-close"
-            type="button"
-            aria-label="Close booking form"
-          >
-            <img
-              src="./assets/images/Cross.svg"
-              alt=""
-              class="h-7 w-7 object-contain"
-            />
-          </button>
+            <p class="event-spaces-desktop-description">
+              The event spaces at Piramida Tirana are designed to host a wide
+              range of activities, from exhibitions and workshops to talks and
+              cultural events. Whether for creative or professional use, the
+              venues offer settings that bring people and ideas together.
+            </p>
+          </div>
 
-          <!-- White form card -->
-          <div class="event-space-card">
+          <div class="event-spaces-carousel">
             <button
-              class="event-space-close event-space-close-mobile"
+              class="event-spaces-carousel-arrow event-spaces-carousel-arrow-left"
               type="button"
-              aria-label="Close booking form"
+              aria-label="Previous event spaces"
             >
               <span aria-hidden="true"></span>
             </button>
 
-            <h1 class="event-space-title">Book an Event Space</h1>
-            <p class="event-space-subtitle hidden md:block">
-              Provide your event details and we will confirm availability
+            <div class="event-spaces-card-track">
+              <a
+                class="event-spaces-card"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 1</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+
+              <a
+                class="event-spaces-card"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/d501635b931639cb374bb4c3479369868029ca63 (1).jpg"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 2</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+
+              <a
+                class="event-spaces-card event-spaces-card-space-3"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 3</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+
+              <a
+                class="event-spaces-card event-spaces-card-space-4"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 4</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+
+              <a
+                class="event-spaces-card"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/24fd138e4c487270d6656b18bacb04deac6199b3 (1).jpg"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 5</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+
+              <a
+                class="event-spaces-card"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/c0d7437a3950068afe0cd31c4fea121c5ccd6442 (1).jpg"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 6</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+
+              <a
+                class="event-spaces-card"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/4d4494e51518b0723ba377d776658e219fecc676 (1).jpg"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 7</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+
+              <a
+                class="event-spaces-card"
+                href="#book-event-space-modal"
+                data-open-event-modal
+              >
+                <div class="event-spaces-card-media">
+                  <img
+                    src="./assets/images/0be2fd837e46e1dbbfbe5ecb17f7d2ef1799e7c9 (1).png"
+                    alt=""
+                  />
+                  <span class="event-spaces-card-button">Book now</span>
+                </div>
+                <div class="event-spaces-card-title">Space 8</div>
+                <div class="event-spaces-card-meta">
+                  Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+                </div>
+              </a>
+            </div>
+
+            <button
+              class="event-spaces-carousel-arrow event-spaces-carousel-arrow-right"
+              type="button"
+              aria-label="Next event spaces"
+            >
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="event-spaces-carousel-pagination" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </div>
+        </section>
+
+        <section class="event-spaces-hero" aria-labelledby="event-spaces-title">
+          <div class="event-spaces-copy">
+            <div id="event-spaces-title" class="event-spaces-title">
+              <span>Event</span>
+              <span>Spaces</span>
+            </div>
+
+            <p class="event-spaces-description">
+              The event spaces at Piramida Tirana are designed to host a wide
+              range of activities, from exhibitions and workshops to talks and
+              cultural events. Whether for creative or professional use, the
+              venues offer settings that bring people and ideas together.
             </p>
 
-            <form class="event-space-form" action="#" method="post">
-              <!-- Row 1: Full Name & Email -->
-              <div class="event-space-row">
-                <div class="event-space-field">
-                  <label class="sr-only" for="fullName">Full name</label>
-                  <input
-                    id="fullName"
-                    name="fullName"
-                    type="text"
-                    autocomplete="name"
-                    placeholder="Full Name*"
-                    required
-                  />
-                </div>
+            <a
+              class="event-spaces-scroll"
+              href="#space-1"
+              aria-label="Scroll to Space 1"
+            >
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
 
-                <div class="event-space-field">
-                  <label class="sr-only" for="email">Email Address</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="Email Address*"
-                    required
-                  />
-                </div>
-              </div>
+          <div class="event-spaces-dots" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </section>
 
-              <!-- Row 2: Number of Guests & Phone -->
-              <div class="event-space-row">
-                <div class="event-space-field">
-                  <label class="sr-only" for="guests">Number of Guests</label>
-                  <input
-                    id="guests"
-                    name="guests"
-                    type="number"
-                    min="1"
-                    inputmode="numeric"
-                    placeholder="Number of Guests*"
-                    required
-                  />
-                </div>
+        <section
+          id="space-1"
+          class="event-space-panel"
+          aria-labelledby="space-1-title"
+        >
+          <img
+            class="event-space-panel-image"
+            src="./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg"
+            alt=""
+          />
 
-                <div class="event-space-field">
-                  <label class="sr-only" for="phone">Phone Number</label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    autocomplete="tel"
-                    inputmode="tel"
-                    placeholder="Phone Number*"
-                    required
-                  />
-                </div>
-              </div>
+          <div class="event-space-panel-content">
+            <div id="space-1-title" class="event-space-panel-title">
+              Space 1
+            </div>
 
-              <!-- Row 3: Event Type -->
-              <div class="event-space-field">
-                <label class="sr-only" for="eventType">Event type</label>
-                <div class="event-space-select-wrapper">
-                  <select id="eventType" name="eventType" required>
-                    <option value="">Event type*</option>
-                    <option value="conference">Conference</option>
-                    <option value="wedding">Wedding</option>
-                    <option value="corporate">Corporate Event</option>
-                    <option value="private">Private Event</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <span
-                    class="event-space-select-arrow"
-                    aria-hidden="true"
-                  ></span>
-                </div>
-              </div>
+            <p class="event-space-panel-meta">
+              Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+            </p>
 
-              <!-- Row 4: Preferred Date & Time -->
-              <div class="event-space-row">
-                <div class="event-space-field">
-                  <label class="sr-only" for="date">Preferred Date</label>
-                  <input
-                    id="date"
-                    name="date"
-                    type="date"
-                    placeholder="Preferred Date"
-                    required
-                  />
-                </div>
+            <a
+              class="event-space-panel-button"
+              href="#book-event-space-modal"
+              data-open-event-modal
+            >
+              <span>Book now</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12h13M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </section>
 
-                <div class="event-space-field">
-                  <label class="sr-only" for="time">Preferred Time</label>
-                  <input
-                    id="time"
-                    name="time"
-                    type="time"
-                    placeholder="Preferred Time"
-                    required
-                  />
-                </div>
-              </div>
+        <section
+          id="space-2"
+          class="event-space-panel event-space-panel-space-2"
+          aria-labelledby="space-2-title"
+        >
+          <img
+            class="event-space-panel-image"
+            src="./assets/images/d501635b931639cb374bb4c3479369868029ca63 (1).jpg"
+            alt=""
+          />
 
-              <!-- Row 5: Description -->
-              <div class="event-space-field">
-                <label class="sr-only" for="description">Description</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  placeholder="Description"
-                  rows="3"
-                ></textarea>
-              </div>
+          <div class="event-space-panel-content">
+            <div id="space-2-title" class="event-space-panel-title">
+              Space 2
+            </div>
 
-              <!-- Submit Button -->
-              <button class="event-space-submit" type="submit">
-                <span>Submit Request</span>
-                <svg
-                  class="event-space-submit-arrow"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 12h14M13 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </form>
+            <p class="event-space-panel-meta">
+              Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+            </p>
+
+            <a
+              class="event-space-panel-button"
+              href="#book-event-space-modal"
+              data-open-event-modal
+            >
+              <span>Book now</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12h13M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </section>
+
+        <section
+          id="space-3"
+          class="event-space-panel event-space-panel-space-3"
+          aria-labelledby="space-3-title"
+        >
+          <img
+            class="event-space-panel-image"
+            src="./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg"
+            alt=""
+          />
+
+          <div class="event-space-panel-content">
+            <div id="space-3-title" class="event-space-panel-title">
+              Space 3
+            </div>
+
+            <p class="event-space-panel-meta">
+              Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+            </p>
+
+            <a
+              class="event-space-panel-button"
+              href="#book-event-space-modal"
+              data-open-event-modal
+            >
+              <span>Book now</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12h13M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </section>
+
+        <section
+          id="space-4"
+          class="event-space-panel event-space-panel-space-4"
+          aria-labelledby="space-4-title"
+        >
+          <img
+            class="event-space-panel-image"
+            src="./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg"
+            alt=""
+          />
+
+          <div class="event-space-panel-content">
+            <div id="space-4-title" class="event-space-panel-title">
+              Space 4
+            </div>
+
+            <p class="event-space-panel-meta">
+              Kati: 2 | Sipërfaqja: 280m² | Kapaciteti: 40
+            </p>
+
+            <a
+              class="event-space-panel-button"
+              href="#book-event-space-modal"
+              data-open-event-modal
+            >
+              <span>Book now</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12h13M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
           </div>
         </section>
       </main>
     </div>
 
+    <footer
+      id="footer"
+      class="relative overflow-hidden bg-[#000929] text-white md:bg-[radial-gradient(circle_at_top_right,#000000_0%,#000000_18%,#020503_55%,#020503_100%)]"
+    >
+      <!-- Mobile glow effects -->
+      <div class="glow-top-1 md:hidden" aria-hidden="true"></div>
+      <div class="glow-top-2 md:hidden" aria-hidden="true"></div>
+      <div class="glow-left md:hidden" aria-hidden="true"></div>
+
+      <!-- Desktop glow effects -->
+      <div class="desktop-glow-left hidden md:block" aria-hidden="true"></div>
+      <div class="desktop-glow-bottom hidden md:block" aria-hidden="true"></div>
+      <div
+        class="desktop-glow-bottom-center hidden md:block"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="desktop-glow-bottom-right hidden md:block"
+        aria-hidden="true"
+      ></div>
+      <!-- Mobile footer -->
+      <div class="relative z-10 mx-auto max-w-7xl px-[1.5rem] py-10 md:hidden">
+        <a href="/" class="inline-block">
+          <img
+            src="./assets/images/logo piramida.svg"
+            alt="Piramida"
+            class="mt-2 h-[22px] w-[50px] object-contain"
+          />
+        </a>
+
+        <div class="mt-3 text-[14px] font-normal tracking-wide">
+          Reimagining space. Inspiring creativity.
+        </div>
+
+        <div class="mt-12 flex items-end justify-between gap-6">
+          <div>
+            <div class="text-[14px] uppercase tracking-wide">Quick Contact</div>
+
+            <a
+              href="mailto:hello@piramida.edu.al"
+              class="mt-2 block text-[14px] tracking-wide text-[#CBFF00] hover:underline"
+            >
+              hello@piramida.edu.al
+            </a>
+
+            <a
+              href="tel:+3551234567890"
+              class="mt-2 block text-[14px] tracking-wide text-[#CBFF00] hover:underline"
+            >
+              +355 1234567890
+            </a>
+          </div>
+
+          <div class="flex shrink-0 items-center gap-5">
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+            >
+              <img
+                src="./assets/images/facebook.svg"
+                class="h-5 w-auto object-contain"
+                alt=""
+              />
+            </a>
+
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+            >
+              <img
+                src="./assets/images/Ig.svg"
+                class="h-5 w-auto object-contain"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16">
+          <div
+            class="text-center text-[12px] font-normal uppercase tracking-wide"
+          >
+            Partnerët tanë
+          </div>
+
+          <div
+            class="relative left-1/2 mt-3 w-screen -translate-x-1/2 border-t border-white/10"
+            aria-hidden="true"
+          ></div>
+
+          <div class="mt-4 flex items-center justify-center gap-3">
+            <img
+              src="./assets/images/tumo-finale2 1.svg"
+              class="h-8 w-[75px] object-contain"
+              alt="Tumo"
+            />
+            <img
+              src="./assets/images/aadffinalk-logo 1.svg"
+              class="h-8 w-[75px] object-contain"
+              alt="AADF"
+            />
+            <img
+              src="./assets/images/bashkia2 1.svg"
+              class="h-8 w-[75px] object-contain"
+              alt="Bashkia Tiranë"
+            />
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-[11px] tracking-wide text-white/30">
+          © 2026 Piramida. All rights reserved.
+        </div>
+      </div>
+
+      <!-- Desktop footer -->
+      <div
+        class="relative z-10 mx-auto hidden max-w-[1920px] bg-transparent px-[8%] pt-[6%] md:block xl:px-[8.2%] pb-[2%]"
+      >
+        <div
+          class="grid grid-cols-[minmax(0,1fr)_auto_auto] items-start gap-[80px] xl:gap-[120px]"
+        >
+          <div>
+            <a href="/" class="inline-block">
+              <img
+                src="./assets/images/logo piramida.svg"
+                alt="Piramida"
+                class="h-[40px] w-[90px] object-contain"
+              />
+            </a>
+
+            <div class="mt-6 text-[16px] font-normal tracking-wide">
+              Reimagining space. Inspiring creativity.
+            </div>
+
+            <div class="mt-16">
+              <div
+                class="text-[12px] font-normal uppercase tracking-wide text-white/90"
+              >
+                Partnerët tanë
+              </div>
+
+              <div class="-ml-[25px] mt-5 flex items-start justify-start">
+                <img
+                  src="./assets/images/aadffinalk-logo 1.svg"
+                  class="h-[40px] w-[102px] object-contain"
+                  alt="AADF"
+                />
+                <img
+                  src="./assets/images/bashkia2 1.svg"
+                  class="h-[40px] w-[102px] object-contain"
+                  alt="Bashkia Tiranë"
+                />
+                <img
+                  src="./assets/images/tumo-finale2 1.svg"
+                  class="h-[40px] w-[102px] object-contain"
+                  alt="Tumo"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="min-w-[170px]">
+            <div class="text-[18px] font-normal tracking-wide">Company</div>
+
+            <nav
+              class="mt-5 flex flex-col gap-4 text-[14px]"
+              aria-label="Footer company navigation"
+            >
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>About Us</span>
+              </a>
+
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>Careers</span>
+              </a>
+
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>Terms &amp; Conditions</span>
+              </a>
+
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>Privacy Policy</span>
+              </a>
+            </nav>
+          </div>
+
+          <div class="min-w-[240px] border-l border-white/10 pl-[70px]">
+            <div class="text-[18px] font-normal tracking-wide opacity-85">
+              Quick Contact
+            </div>
+
+            <a
+              href="mailto:hello@piramida.edu.al"
+              class="mt-4 block text-[16px] tracking-wide text-[#CBFF00] hover:underline opacity-85"
+            >
+              hello@piramida.edu.al
+            </a>
+
+            <a
+              href="tel:+3551234567890"
+              class="mt-3 block text-[16px] tracking-wide hover:underline opacity-85"
+            >
+              +355 1234567890
+            </a>
+
+            <div class="mt-9 flex items-center gap-6">
+              <a
+                href="#"
+                aria-label="Facebook"
+                class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+              >
+                <img
+                  src="./assets/images/facebook.svg"
+                  class="h-[25px] w-[14px] object-contain"
+                  alt=""
+                />
+              </a>
+
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+              >
+                <img
+                  src="./assets/images/Ig.svg"
+                  class="h-[21px] w-[21px] object-contain"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-[120px]">
+          <span
+            class="inline-flex rounded-full border border-white/50 px-5 py-2 text-[14px] font-normal uppercase tracking-wide"
+          >
+            Lorem ipsum text
+          </span>
+
+          <div class="mt-8 flex items-center justify-between gap-8">
+            <div
+              class="text-[90px] font-normal uppercase leading-none tracking-tight xl:text-[120px]"
+            >
+              Piramida
+            </div>
+
+            <a
+              href="#top"
+              aria-label="Back to top"
+              class="group flex h-[105px] w-[105px] shrink-0 items-center justify-center rounded-full border border-white/50 transition-colors duration-300 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00] focus-visible:ring-offset-4 focus-visible:ring-offset-[#020503]"
+            >
+              <svg
+                class="h-[55px] w-[55px] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M14 50L49 15"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M25 15H49V39"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div
+      id="book-event-space-modal"
+      class="event-space-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="book-event-space-title"
+    >
+      <button
+        class="event-space-modal-backdrop"
+        type="button"
+        aria-label="Close booking form"
+        data-close-event-modal
+      ></button>
+
+      <section class="event-space-section event-space-modal-panel">
+        <div class="event-space-shape" aria-hidden="true"></div>
+
+        <button
+          class="event-space-close"
+          type="button"
+          aria-label="Close booking form"
+          data-close-event-modal
+        >
+          <img
+            src="./assets/images/Cross.svg"
+            alt=""
+            class="h-7 w-7 object-contain"
+          />
+        </button>
+
+        <div class="event-space-card">
+          <button
+            class="event-space-close event-space-close-mobile"
+            type="button"
+            aria-label="Close booking form"
+            data-close-event-modal
+          >
+            <span aria-hidden="true"></span>
+          </button>
+
+          <h1 id="book-event-space-title" class="event-space-title">
+            Book an Event Space
+          </h1>
+          <p class="event-space-subtitle hidden md:block">
+            Provide your event details and we will confirm availability
+          </p>
+
+          <form class="event-space-form" action="#" method="post">
+            <div class="event-space-row">
+              <div class="event-space-field">
+                <label class="sr-only" for="fullName">Full name</label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Full Name*"
+                  required
+                />
+              </div>
+
+              <div class="event-space-field">
+                <label class="sr-only" for="email">Email Address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="Email Address*"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="event-space-row">
+              <div class="event-space-field">
+                <label class="sr-only" for="guests">Number of Guests</label>
+                <input
+                  id="guests"
+                  name="guests"
+                  type="number"
+                  min="1"
+                  inputmode="numeric"
+                  placeholder="Number of Guests*"
+                  required
+                />
+              </div>
+
+              <div class="event-space-field">
+                <label class="sr-only" for="phone">Phone Number</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  placeholder="Phone Number*"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="event-space-field">
+              <label class="sr-only" for="eventType">Event type</label>
+              <div class="event-space-select-wrapper">
+                <select id="eventType" name="eventType" required>
+                  <option value="">Event type*</option>
+                  <option value="conference">Conference</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="corporate">Corporate Event</option>
+                  <option value="private">Private Event</option>
+                  <option value="other">Other</option>
+                </select>
+                <span
+                  class="event-space-select-arrow"
+                  aria-hidden="true"
+                ></span>
+              </div>
+            </div>
+
+            <div class="event-space-row">
+              <div class="event-space-field">
+                <label class="sr-only" for="date">Preferred Date</label>
+                <input
+                  id="date"
+                  name="date"
+                  type="date"
+                  placeholder="Preferred Date"
+                  required
+                />
+              </div>
+
+              <div class="event-space-field">
+                <label class="sr-only" for="time">Preferred Time</label>
+                <input
+                  id="time"
+                  name="time"
+                  type="time"
+                  placeholder="Preferred Time"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="event-space-field">
+              <label class="sr-only" for="description">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Description"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <button class="event-space-submit" type="submit">
+              <span>Submit Request</span>
+              <svg
+                class="event-space-submit-arrow"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+
     <script src="./assets/js/menu.js" defer></script>
-    <script src="./assets/js/education-carousel.js" defer></script>
+    <script src="./assets/js/event-spaces-gallery.js" defer></script>
   </body>
 </html>
