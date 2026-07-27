@@ -1,14 +1,15 @@
 @font-face {
   font-family: "Anton";
-  src: url("../fonts/Anton-Regular.ttf") format("truetype");
+  src: url("../fonts/Anton/Anton-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
+
 @font-face {
   font-family: "Plus Jakarta Sans";
-  src: url("../fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+  src: url("../fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 200 800;
   font-display: swap;
@@ -16,8 +17,7 @@
 
 @font-face {
   font-family: "Plus Jakarta Sans";
-  src: url("../fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("../fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Italic-VariableFont_wght.ttf") format("truetype");
   font-style: italic;
   font-weight: 200 800;
   font-display: swap;
@@ -26,7 +26,7 @@
 :root {
   --font-display: "Anton", Impact, sans-serif;
   --font-body: "Plus Jakarta Sans", Arial, sans-serif;
-  --color-navy: #000929;
+  --color-navy: #0a1435;
   --color-black: #000000;
   --color-white: #ffffff;
   --color-lime: #cbff00;
@@ -49,6 +49,16 @@
 html {
   min-height: 100%;
   scroll-behavior: smooth;
+}
+
+html {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Edge */
 }
 
 body {
@@ -117,10 +127,130 @@ svg {
   outline-offset: 4px;
 }
 
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: 400;
+  font-family: 'Anton', Impact, sans-serif;
+}
+
+.title-60 {
+  font-size: 60px;
+  font-weight: 400;
+  font-family: 'Anton', Impact, sans-serif;
+  line-height: 60px;
+}
+
+.title-18 {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 28px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.title-16 {
+  font-size: 16px;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 24px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.title-green-20 {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 28px;
+  color: #cbff00;
+  letter-spacing: 0;
+}
+
+.title-36 {
+  font-size: 36px;
+  font-weight: 400;
+  font-family: 'Anton', Impact, sans-serif;
+  line-height: 36px;
+}
+
+.title-14-bold {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 16px;
+}
+.title_16{
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 24px; 
+}
+
+.title-14-semibold {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 16px;
+}
+
+.title-22 {
+  font-size: 22px;
+  font-weight: 400;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 28px;
+}
+.title_40{
+  font-size: 40px;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  line-height: 40px;
+  color:rgba(203, 255, 0, 1);
+}
+.remove-scrollbar {
+  scrollbar-width: none;
+}
+
+
+@media (max-width: 767px) {
+  .title-60 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .title-18 {
+    font-size: 14px;
+    line-height: 28px;
+  }
+  .title-green-20 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .title-16 {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .title-36 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .title-22 {
+    font-size: 20px;
+    line-height: 24px; 
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {

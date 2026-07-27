@@ -1,0 +1,89 @@
+/* Event text hidden by default, revealed only on the centered card */
+.card-text {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.card-snap.is-active .card-text {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#cardTrack {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--visible-cards) - 1) * 1rem) / var(--visible-cards));
+  gap: 1rem;
+  --visible-cards: 3;
+}
+
+#eventsSection {
+  background: url(/assets/images/BG.png) no-repeat center center;
+  background-size: cover;
+}
+
+
+
+/* only what Tailwind's default utility set genuinely can't express */
+.events-slide {
+  transition: transform .85s cubic-bezier(.22, .9, .25, 1), opacity .6s ease;
+}
+
+.events-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  z-index: 10;
+}
+
+.events-slide.is-prev {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6%);
+  z-index: 5;
+}
+
+.events-slide.is-next {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6%);
+  z-index: 5;
+}
+
+@keyframes bob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-bob {
+  animation: bob 1.6s ease-in-out infinite;
+}
+
+@media (max-width:768px) {
+  .slot-diagonal {
+    position: relative !important;
+    inset: auto !important;
+    left: auto !important;
+    top: auto !important;
+    width: 78vw !important;
+    height: 28vh !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  #cardTrack {
+    --visible-cards: 1;
+  }
+}

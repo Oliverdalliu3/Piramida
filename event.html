@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link rel="stylesheet" href="./assets/css/homepage.css" />
+
+    <style>
+            /* ===== Hover-to-grey + info panel behavior ===== */
+        .slot-diagonal img {
+            transition: filter 0.45s ease, opacity 0.45s ease;
+        }
+ 
+        /* when a slide has an active hover, dim every card except the hovered one */
+        .events-slide.has-hover .slot-diagonal:not(.is-hovered) img {
+            filter: grayscale(1) brightness(0.55);
+            opacity: 0.85;
+        }
+ 
+        .events-slide.has-hover .slot-diagonal.is-hovered img {
+            filter: grayscale(0);
+        }
+ 
+        .slot-diagonal {
+            cursor: pointer;
+        }
+ 
+        /* hidden data holders — text lives in real divs now instead of data-* attributes */
+        .slot-title,
+        .slot-date {
+            display: none;
+        }
+ 
+        /* shared card dimensions — every diagonal card position is derived from these,
+           so corners always line up exactly regardless of viewport size */
+        .events-slide {
+            --card-w: min(485px, 38vw);
+            --card-h: min(360px, 34vh);
+        }
+ 
+        /* left-side info panel */
+        .events-info {
+            position: absolute;
+            left: 6%;
+            bottom: 12%;
+            max-width: 420px;
+            z-index: 20;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            pointer-events: none;
+        }
+ 
+        .events-info.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+ 
+        .events-info-title {
+            color: #D6FF3F;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+            line-height: 1.15;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+ 
+        .events-info-date {
+            margin-top: 0.85rem;
+            color: #ffffff;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+ 
+        @media (max-width: 768px) {
+            .events-info {
+                left: 5%;
+                right: 5%;
+                bottom: 8%;
+                max-width: none;
+            }
+        }
+ 
+        #eventsSection {
+            background: url(/assets/images/BG.png) no-repeat center center;
+            background-size: cover;
+        }
+ 
+        /* only what Tailwind's default utility set genuinely can't express */
+        .events-slide {
+            transition: transform .85s cubic-bezier(.22, .9, .25, 1), opacity .6s ease;
+        }
+ 
+        .events-slide.is-active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+            z-index: 10;
+        }
+ 
+        .events-slide.is-prev {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-6%);
+            z-index: 5;
+        }
+ 
+        .events-slide.is-next {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(6%);
+            z-index: 5;
+        }
+ 
+        @keyframes bob {
+ 
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+ 
+            50% {
+                transform: translateY(4px);
+            }
+        }
+ 
+        .animate-bob {
+            animation: bob 1.6s ease-in-out infinite;
+        }
+ 
+        @media (max-width:768px) {
+            .slot-diagonal {
+                position: relative !important;
+                inset: auto !important;
+                left: auto !important;
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                width: 78vw !important;
+                height: 28vh !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+ 
+        @media (max-width: 767px) {
+            #cardTrack {
+                --visible-cards: 1;
+            }
+        }
+ 
+        /* ===== Mobile "reel" view — one event per full-screen swipe (Instagram/TikTok style) ===== */
+        /* Separate markup from the desktop diagonal layout; hidden on desktop entirely. */
+        #eventsMobile {
+            display: none;
+        }
+ 
+        @media (max-width: 768px) {
+            #eventsSection {
+                display: none;
+            }
+ 
+            #eventsMobile {
+                display: block;
+                height: 100svh;
+                overflow-y: scroll;
+                scroll-snap-type: y mandatory;
+                -webkit-overflow-scrolling: touch;
+                background: url(/assets/images/BG.png) no-repeat center center;
+                background-size: cover;
+            }
+ 
+            .reel-item {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+                height: 100svh;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 0 0 3rem;
+                box-sizing: border-box;
+            }
+ 
+            .reel-image-wrap {
+                position: relative;
+                width: 100%;
+                height: 75vh;
+                overflow: hidden;
+                flex-shrink: 0;
+                margin: 0;
+                width: 100%;
+                border-radius: 0;
+            }
+ 
+            .reel-image-wrap img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+ 
+            .reel-date {
+                padding: 0 1rem;
+                margin: 20px 0 20px 20px;
+                color: #ffffff;
+                opacity: 0.85;
+                font-size: 0.95rem;
+                border: solid 1px #ffffff;
+                width: fit-content;
+            }
+ 
+            .reel-title {
+                margin-top: 0.5rem;
+                padding: 0 1rem 0.25rem;
+                color: #D6FF3F;
+                font-weight: 400;
+                font-size: 32px;
+                line-height: 1.15;
+                text-transform: uppercase;
+                letter-spacing: 0.01em;
+                font-family: 'Albert-Sans', Arial, sans-serif;
+            }
+        }
+        /* Tablets & smaller laptops (e.g. 1280x800, 1366x768, iPad landscape): the desktop
+           card size (38vw/34vh) is too large for these widths, so the top card — offset by
+           2x the card width from the right edge — runs off the left edge and looks "shrunk"
+           when it's actually just clipped. Scaling the shared variable down here keeps all
+           three cards proportional and fully on-screen. Full desktop (>1600px) is untouched. */
+        @media (min-width: 769px) and (max-width: 1600px) {
+            .events-slide {
+                --card-w: min(420px, 30vw);
+                --card-h: min(300px, 27vh);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header absolute top-0 left-0 w-full z-50 bg-transparent">
+        <nav class="header-inner">
+            <a href="/" class="header-logo" aria-label="Piramida homepage">
+                <img src="./assets/images/logo piramida.svg" alt="Piramida logo" />
+            </a>
+
+            <button id="openMenu" class="menu-open-button" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="mobileMenu">
+                <img src="./assets/images/menu icon.svg" alt="" class="h-8 w-8 object-contain" />
+            </button>
+        </nav>
+    </header>
+
+    <!-- Fullscreen menu -->
+    <div id="mobileMenu" aria-hidden="true">
+        <!-- Close button -->
+        <button id="closeMenu" class="menu-close-button" type="button" aria-label="Close menu">
+            <img src="./assets/images/Cross.svg" alt="" class="h-8 w-8 object-contain" />
+        </button>
+
+        <div class="menu-layout">
+            <!-- Left side -->
+            <section class="menu-left">
+                <img src="./assets/images/logo piramida.svg" alt="Piramida logo" class="menu-logo" />
+
+                <nav class="menu-main-navigation" aria-label="Main navigation">
+                    <ul>
+                        <li>
+                            <a href="#" class="mobile-main-link">Education</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Innovation</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Business</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Art &amp; Culture</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Events</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Attractions</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link"> Museum </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Rent a Space</a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+
+            <!-- Right side -->
+            <section class="menu-right">
+                <div class="menu-right-content">
+                    <nav class="menu-secondary-links" aria-label="Secondary navigation">
+                        <a href="#" class="mobile-small-link">About us</a>
+                        <a href="#" class="mobile-small-link">News</a>
+                        <a href="#" class="mobile-small-link">Careers</a>
+                        <a href="#" class="mobile-small-link">Contact</a>
+                    </nav>
+
+                    <div class="menu-bottom-content">
+                        <div class="menu-policy-links">
+                            <a href="#" class="mobile-footer-link">
+                                Terms &amp; Conditions
+                            </a>
+
+                            <a href="#" class="mobile-footer-link">Privacy Policy</a>
+                        </div>
+
+                        <div class="menu-social-links">
+                            <a href="#" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14 8H17V4H14C10.7 4 9 6 9 9V11H6V15H9V22H13V15H16L17 11H13V9C13 8.3 13.3 8 14 8Z"
+                                        stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+
+                            <a href="#" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"
+                                        stroke-width="1.7" />
+
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7" />
+
+                                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center bg-[#0F174A] h-40">
+                    <button
+                        class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#0F174A] shadow-sm transition hover:shadow-md">
+                        <span>Explore All</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <section id="eventsSection" tabindex="0" aria-label="Upcoming events" class="relative h-[100vh]">
+
+        <!-- ============ TRACK — one .events-slide per group of (up to) 3 events ============ -->
+        <div id="eventsTrack" class="relative w-full h-full">
+
+            <!-- Slide 1 -->
+            <div class="events-slide is-active absolute inset-0 w-full h-full
+                flex md:block flex-col items-center justify-center gap-4 py-20 md:py-0" data-index="0">
+
+                <!-- Card: Beat of Youth — bottom-right corner touches card 2's top-left corner -->
+                <article class="slot-diagonal absolute overflow-hidden"
+                    style="right: calc(var(--card-w) * 2); bottom: calc(var(--card-h) * 2); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
+                    <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="slot-title title_40">Filmi: “Asterix dhe Obelix: Misioni Kleopatra”</div>
+                    <div class="slot-date title_16">November 8 - 11.30</div>
+                </article>
+
+                <!-- Card: Artist Talk — bottom-right corner touches card 3's top-left corner -->
+                <article class="slot-diagonal absolute overflow-hidden"
+                    style="right: var(--card-w); bottom: var(--card-h); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
+                    <img src="./assets/images/event2.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="slot-title title_40">TUNG IDEVE 2026 – Spring School & Competition</div>
+                    <div class="slot-date title_16">1–3 April 2026</div>
+                </article>
+
+                <!-- Card: GOCAT — anchored to container's bottom-right -->
+                <article class="slot-diagonal absolute overflow-hidden"
+                    style="right: 0; bottom: 0; left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
+                    <img src="./assets/images/event3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="slot-title title_40">Glass Experience:
+                        Parent & Child
+                        Workshop</div>
+                    <div class="slot-date title_16">12–13 April 2026</div>
+                </article>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="events-slide is-next absolute inset-0 w-full h-full opacity-0 pointer-events-none
+                flex md:block flex-col items-center justify-center gap-4 py-20 md:py-0" data-index="1">
+
+                <!-- Card: Jazz Nights — bottom-right corner touches card 2's top-left corner -->
+                <article class="slot-diagonal absolute overflow-hidden"
+                    style="right: calc(var(--card-w) * 2); bottom: calc(var(--card-h) * 2); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
+                    <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="slot-title title_40">Jazz Nights</div>
+                    <div class="slot-date title_16">02 MAY · 21:00</div>
+                </article>
+
+                <!-- Card: Design Lab — bottom-right corner touches card 3's top-left corner -->
+                <article class="slot-diagonal absolute overflow-hidden"
+                    style="right: var(--card-w); bottom: var(--card-h); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
+                    <img src="./assets/images/event2.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="slot-title title_40">TUNG IDEVE 2026 – Spring School & Competition</div>
+                    <div class="slot-date title_16">1–3 April 2026</div>
+                </article>
+
+                <!-- Card: Short Films — anchored to container's bottom-right -->
+                <article class="slot-diagonal absolute overflow-hidden"
+                    style="right: 0; bottom: 0; left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
+                    <img src="./assets/images/event3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="slot-title title_40">Filmi: “Asterix dhe Obelix: Misioni Kleopatra”</div>
+                    <div class="slot-date title_16">15 MAY</div>
+                </article>
+            </div>
+
+            <!-- Slide 3 — only one event, other two slots stay empty on purpose -->
+            <div class="events-slide is-next absolute inset-0 w-full h-full opacity-0 pointer-events-none
+                flex md:block flex-col items-center justify-center gap-4 py-20 md:py-0" data-index="2">
+
+                <!-- Card: New Year Talks -->
+                <article class="slot-diagonal absolute overflow-hidden"
+                    style="right: 0; bottom: 0; left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
+                    <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <div class="slot-title title_40">Glass Experience</div>
+                    <div class="slot-date title_16">01 JAN 2026</div>
+                </article>
+
+            </div>
+
+        </div>
+        <!-- ============ /TRACK ============ -->
+
+        <!-- Left-side hover info panel -->
+        <div id="eventsInfo" class="events-info">
+            <div class="events-info-title"></div>
+            <div class="events-info-date"></div>
+        </div>
+
+    </section>
+
+    <!-- ============ MOBILE REEL — one event per full-screen swipe, Instagram/TikTok style ============ -->
+    <!-- Independent of the desktop diagonal layout above; only shown at mobile widths. -->
+     <section id="eventsMobile" aria-label="Upcoming events">
+        <div class="reel-item">
+            <div class="reel-image-wrap">
+                <img src="./assets/images/event1.jpg" alt="" />
+            </div>
+            <div class="reel-date">12 APR · 19:00</div>
+            <div class="reel-title">Beat of Youth</div>
+        </div>
+ 
+        <div class="reel-item">
+            <div class="reel-image-wrap">
+                <img src="./assets/images/event2.jpg" alt="" />
+            </div>
+            <div class="reel-date">18 APR · 18:00</div>
+            <div class="reel-title">Artist Talk</div>
+        </div>
+ 
+        <div class="reel-item">
+            <div class="reel-image-wrap">
+                <img src="./assets/images/event3.jpg" alt="" />
+            </div>
+            <div class="reel-date">24 APR · 20:30</div>
+            <div class="reel-title">GOCAT</div>
+        </div>
+ 
+        <div class="reel-item">
+            <div class="reel-image-wrap">
+                <img src="./assets/images/event1.jpg" alt="" />
+            </div>
+            <div class="reel-date">02 MAY · 21:00</div>
+            <div class="reel-title">Jazz Nights</div>
+        </div>
+ 
+        <div class="reel-item">
+            <div class="reel-image-wrap">
+                <img src="./assets/images/event2.jpg" alt="" />
+            </div>
+            <div class="reel-date">09 MAY · 17:00</div>
+            <div class="reel-title">Design Lab</div>
+        </div>
+ 
+        <div class="reel-item">
+            <div class="reel-image-wrap">
+                <img src="./assets/images/event3.jpg" alt="" />
+            </div>
+            <div class="reel-date">15 MAY · 20:00</div>
+            <div class="reel-title">Short Films</div>
+        </div>
+ 
+        <div class="reel-item">
+            <div class="reel-image-wrap">
+                <img src="./assets/images/event1.jpg" alt="" />
+            </div>
+            <div class="reel-date border-1 title_16">01 JAN · 19:00</div>
+            <div class="reel-title">New Year Talks</div>
+        </div>
+    </section>
+ 
+ 
+    <script src="./assets/js/menu.js" defer></script>
+    <script>
+        (function () {
+            // the DOM already has all the slides/cards written in HTML above —
+            // this just reads them and handles the "reel" navigation.
+ 
+            const section = document.getElementById('eventsSection');
+            const slides = Array.from(document.querySelectorAll('#eventsTrack .events-slide'));
+            const infoBox = document.getElementById('eventsInfo');
+            const titleEl = infoBox.querySelector('.events-info-title');
+            const dateEl = infoBox.querySelector('.events-info-date');
+ 
+            let current = 0;
+            let animating = false;
+            const LOCK_MS = 850;
+ 
+            function render() {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('is-active', 'is-prev', 'is-next');
+                    slide.classList.add(i === current ? 'is-active' : i < current ? 'is-prev' : 'is-next');
+                });
+            }
+ 
+            function goTo(index) {
+                if (animating || index === current || index < 0 || index >= slides.length) return;
+                animating = true;
+                current = index;
+                render();
+                window.setTimeout(() => { animating = false; }, LOCK_MS);
+            }
+ 
+            let wheelCooldown = false;
+            section.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (wheelCooldown) return;
+ 
+                if (e.deltaY > 0) {
+                    if (current < slides.length - 1) goTo(current + 1);
+                    else { window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' }); return; }
+                } else if (e.deltaY < 0 && current > 0) {
+                    goTo(current - 1);
+                } else return;
+ 
+                wheelCooldown = true;
+                window.setTimeout(() => { wheelCooldown = false; }, LOCK_MS);
+            }, { passive: false });
+ 
+            let touchStartY = null;
+            section.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+            section.addEventListener('touchend', (e) => {
+                if (touchStartY === null) return;
+                const dy = touchStartY - e.changedTouches[0].clientY;
+                if (Math.abs(dy) > 40) {
+                    if (dy > 0 && current < slides.length - 1) goTo(current + 1);
+                    else if (dy < 0 && current > 0) goTo(current - 1);
+                }
+                touchStartY = null;
+            }, { passive: true });
+ 
+            section.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') goTo(current + 1);
+                if (e.key === 'ArrowUp') goTo(current - 1);
+            });
+ 
+            render();
+ 
+            // ===== Hover-to-grey + left info panel =====
+            slides.forEach(slide => {
+                const cards = Array.from(slide.querySelectorAll('.slot-diagonal'));
+ 
+                cards.forEach(card => {
+                    const titleDiv = card.querySelector('.slot-title');
+                    const dateDiv = card.querySelector('.slot-date');
+ 
+                    card.addEventListener('mouseenter', () => {
+                        slide.classList.add('has-hover');
+                        cards.forEach(c => c.classList.remove('is-hovered'));
+                        card.classList.add('is-hovered');
+ 
+                        titleEl.textContent = titleDiv ? titleDiv.textContent : '';
+                        dateEl.textContent = dateDiv ? dateDiv.textContent : '';
+                        infoBox.classList.add('is-visible');
+                    });
+ 
+                    card.addEventListener('mouseleave', () => {
+                        slide.classList.remove('has-hover');
+                        card.classList.remove('is-hovered');
+                        infoBox.classList.remove('is-visible');
+                    });
+                });
+            });
+        })();
+    </script>
+ 
+</body>
+ 
+</html>
