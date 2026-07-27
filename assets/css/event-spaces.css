@@ -34,7 +34,7 @@
     #bef264 46.4%,
     rgba(203, 255, 0, 0) 84.99%
   );
-  clip-path: polygon(9% 7%, 98% 0%, 91% 80%, 0% 96%);
+  clip-path: polygon(10% 8%, 97% 1%, 91% 86%, 0% 98%);
   transform: translate(-50%, -50%) rotate(180deg);
   transform-origin: center;
   pointer-events: none;
