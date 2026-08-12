@@ -152,7 +152,7 @@
             <h1
                 class="uppercase leading-[0.95] tracking-tight text-white drop-shadow-lg text-4xl sm:text-5xl md:text-6xl lg:text-[80px]">
                 <span class="block">Discover the</span>
-                <span class="block">
+                <span class="block"> 
                     World of <span class="text-lime-400">Piramida</span>
                 </span>
             </h1>
@@ -245,7 +245,7 @@
         </div>
     </section>
 
-    <section class="bg-[#0a1435] py-10 sm:pt-16 md:py-[150px] px-4 md:px-12 relative z-[99999999]">
+    <section class="bg-[#0a1435] py-10 sm:pt-16 md:py-[150px] px-4 md:px-12 relative z-[8]">
         <img src="./assets/images/green-gradient.svg" alt="Green gradient" class=" absolute right-0 top-[25%]" />
 
         <svg width="0" height="0" class="absolute">
@@ -278,19 +278,77 @@
                          V0.132352
                          Z" />
                 </clipPath>
+                <!-- Same shape as a mask instead of a clip-path. clip-path on an
+                     element breaks backdrop-filter sampling on anything behind it
+                     (a known Chrome/Safari compositing bug) — mask-image achieves
+                     the identical visual shape without that side effect, which is
+                     what was causing the ring area to render solid black. -->
+                <mask id="piramidaMask" maskContentUnits="objectBoundingBox">
+                    <path fill="#ffffff" d="M0.945313,0.132352
+                         C0.945313,0.148595 0.952305,0.161763 0.960938,0.161763
+                         H0.984375
+                         C0.993008,0.161763 1,0.174916 1,0.191175
+                         V0.897059
+                         C1,0.913303 0.993008,0.926471 0.984375,0.926471
+                         H0.617188
+                         C0.608558,0.926471 0.601563,0.939638 0.601563,0.955882
+                         V0.970588
+                         C0.601563,0.986832 0.594567,1 0.585938,1
+                         H0.015625
+                         C0.006996,1 0,0.986832 0,0.970588
+                         V0.867647
+                         C0,0.851403 0.006996,0.838235 0.015625,0.838235
+                         H0.023438
+                         C0.032067,0.838235 0.039063,0.825068 0.039063,0.808824
+                         V0.705882
+                         C0.039063,0.689638 0.032067,0.676471 0.023438,0.676471
+                         H0.015625
+                         C0.006996,0.676471 0,0.663303 0,0.647059
+                         V0.029412
+                         C0,0.013168 0.006996,0 0.015625,0
+                         H0.929688
+                         C0.938320,0 0.945313,0.013168 0.945313,0.029412
+                         V0.132352
+                         Z" />
+                </mask>
             </defs>
         </svg>
-        <!-- Image using the shape -->
-        <div class="max-w-7xl mx-auto">
-            <img src="./assets/Images/Image Container.png" alt="Piramida of Tirana"
-                class="w-full aspect-[1280/680] object-cover" style="clip-path: url(#piramidaClip);" />
+
+        <!-- Video using the shape, with the original image as its thumbnail (poster) -->
+        <div class="max-w-7xl mx-auto relative">
+            <div class="video-clip">
+                <video id="piramidaVideo" poster="./assets/Images/Image Container.png"
+                    class="w-full aspect-[1280/680] object-cover" preload="metadata" playsinline
+                    aria-label="Piramida of Tirana">
+                    <source src="./assets/video/Iceland Summer Solstice.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Custom play badge: blurred glass backing + rotating "ABOUT US" ring + solid center -->
+            <button id="playBadge" type="button" aria-label="Play video" class="play-badge">
+                <span class="play-badge-blur" aria-hidden="true"></span>
+                <svg viewBox="0 0 220 220" class="play-badge-ring" aria-hidden="true">
+                    <defs>
+                        <path id="badgeTextPath" d="M110,20 a90,90 0 1,1 -0.1,0" />
+                    </defs>
+                    <text class="play-badge-text">
+                        <textPath href="#badgeTextPath" startOffset="0%">ABOUT US &#8212; ABOUT US &#8212; ABOUT US
+                            &#8212; ABOUT US &#8212;</textPath>
+                    </text>
+                </svg>
+                <span class="play-badge-center">
+                    <svg viewBox="0 0 24 24" class="play-badge-icon" aria-hidden="true">
+                        <polygon points="9,6 19,12 9,18" />
+                    </svg>
+                </span>
+            </button>
         </div>
 
     </section>
 
 
-
-    <div class="relative overflow-hidden bg-[#081434]">
+    <div class="relative overflow-hidden bg-[#081434] ">
 
         <section class="relative z-10 py-16 sm:py-24">
             <div class="title-60 text-center">EVENTS</div>
@@ -322,8 +380,10 @@
 
                     <!-- Card 1 -->
                     <div class="card-snap overflow-hidden">
-                        <img src="./assets/images/event_1.jpg" alt="Qelq event" loading="lazy"
-                            class="w-full h-[450px] rounded-[12px]" />
+                        <a href="#">
+                            <img src="./assets/images/event_1.jpg" alt="Qelq event" loading="lazy"
+                                class="w-full h-[450px] rounded-[12px] object-cover object-center z-[99999999]" />
+                        </a>
                         <div class="card-text pt-[40px] sm:p-5 mx-auto">
                             <p class="title-green-20 mx-auto text-center">Qelq</p>
                             <p class="title-16 fw-[500] mx-auto text-center w-[70%]">Replace with this event's caption
@@ -333,8 +393,10 @@
 
                     <!-- Card 2 -->
                     <div class="card-snap overflow-hidden">
-                        <img src="./assets/images/event_2.jpg" alt="Rose Roberts event" loading="lazy"
-                            class="w-full h-[450px] rounded-[12px]" />
+                        <a href="#">
+                            <img src="./assets/images/event_2.jpg" alt="Rose Roberts event" loading="lazy"
+                                class="w-full h-[450px] rounded-[12px] object-cover object-center z-[99999999]" />
+                        </a>
                         <div class="card-text pt-[40px] sm:p-5 mx-auto">
                             <p class="title-green-20 mx-auto text-center">Rose Roberts</p>
                             <p class="title-16 fw-[500] mx-auto text-center w-[70%]">Vocal patterns that mimic human
@@ -344,8 +406,10 @@
 
                     <!-- Card 3 -->
                     <div class="card-snap overflow-hidden">
-                        <img src="./assets/images/event_3.jpg" alt="Pe-Në-Sy event" loading="lazy"
-                            class="w-full h-[450px] rounded-[12px]" />
+                        <a href="#">
+                            <img src="./assets/images/event_3.jpg" alt="Pe-Në-Sy event" loading="lazy"
+                                class="w-full h-[450px] rounded-[12px] object-cover object-center z-[99999999]" />
+                        </a>
                         <div class="card-text pt-[40px] sm:p-5 mx-auto">
                             <p class="title-green-20 mx-auto text-center">Pe-Në-Sy</p>
                             <p class="title-16 fw-[500] mx-auto text-center w-[70%]">Replace with this event's caption
@@ -355,8 +419,10 @@
 
                     <!-- Card 4 -->
                     <div class="card-snap overflow-hidden">
-                        <img src="./assets/images/event_2.jpg" alt="Pe-Në-Sy event" loading="lazy"
-                            class="w-full h-[450px] rounded-[12px]" />
+                        <a href="#">
+                            <img src="./assets/images/event_2.jpg" alt="Pe-Në-Sy event" loading="lazy"
+                                class="w-full h-[450px] rounded-[12px] object-cover object-center z-[99999999]" />
+                        </a>
                         <div class="card-text pt-[40px] sm:p-5 mx-auto">
                             <p class="title-green-20 mx-auto text-center">Pe-Në-Sy</p>
                             <p class="title-16 fw-[500] mx-auto text-center w-[70%]">Replace with this event's caption
@@ -378,8 +444,11 @@
             </div>
         </section>
 
-        <!-- <img src="./assets/images/rose-gradient.svg" class="w-full h-full"/> -->
-        
+        <!-- Glow (replaces the old rose-gradient.svg) -->
+        <div class="pointer-events-none absolute inset-0 z-0">
+            <img src="./assets/images/bg-low.jpg" alt="Rose gradient" class="w-full h-full object-cover" />
+        </div>
+
         <section class="relative z-10 py-16 sm:py-24 px-[30px] md:px-[80px] lg:px-[120px]">
 
             <!-- Heading -->
@@ -428,7 +497,6 @@
                     </div>
                 </div>
 
-
             </div>
 
         </section>
@@ -446,56 +514,61 @@
 
         <!-- News cards -->
         <div id="newsScroll" class="news-scroll max-w-6xl mx-auto flex sm:grid overflow-x-auto sm:overflow-visible
-                snap-x snap-mandatory sm:snap-none
-                gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 -mx-6 px-6 sm:mx-0 sm:px-0 md:mx-auto">
+            snap-x snap-mandatory sm:snap-none
+            gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 -mx-6 px-6 sm:mx-0 sm:px-0 md:mx-auto">
 
             <!-- News 1 -->
             <article
                 class="news-card shrink-0 w-full sm:w-auto snap-center rounded-[16px] border border-white/15 p-[30px]">
-                <div class="rounded-xl">
-                    <img src="./assets/images/piramida_block_1.jpg" alt="Piramida staircase from above" loading="lazy"
-                        class="w-full sm:w-[350px] object-cover h-[380px] rounded-[12px]" />
-                </div>
-                <div class="pt-4 px-1">
-                    <div class="text-white title-22 mb-2">
-                        Lorem Ipsum is simply dummy text of the printing industry
+                <a href="#">
+                    <div class="rounded-xl">
+                        <img src="./assets/images/piramida_block_1.jpg" alt="Piramida staircase from above"
+                            loading="lazy" class="w-full sm:w-[350px] object-cover h-[380px] rounded-[12px]" />
                     </div>
-                    <p class="text-white/50 title-14-semibold pt-2">Jul 27, 2025</p>
-                </div>
+                    <div class="pt-4 px-1">
+                        <div class="text-white title-22 mb-2">
+                            Lorem Ipsum is simply dummy text of the printing industry
+                        </div>
+                        <p class="text-white/50 title-14-semibold pt-2">Jul 27, 2025</p>
+                    </div>
+                </a>
             </article>
 
             <!-- News 2 -->
             <article
                 class="news-card shrink-0 w-full sm:w-auto snap-center rounded-[16px] border border-white/15 p-[30px]">
-                <div class="rounded-xl">
-                    <img src="./assets/images/piramida_block.jpg" alt="Visitors on Piramida rooftop at sunset"
-                        loading="lazy" class="w-full h-[380px] object-cover rounded-[12px]" />
-                </div>
-                <div class="pt-4 pb-2 px-1">
-                    <div class="text-white title-22 mb-2">
-                        Lorem Ipsum is simply dummy text of the printing industry
+                <a href="#">
+                    <div class="rounded-xl">
+                        <img src="./assets/images/piramida_block.jpg" alt="Visitors on Piramida rooftop at sunset"
+                            loading="lazy" class="w-full h-[380px] object-cover rounded-[12px]" />
                     </div>
-                    <p class="text-white/50 title-14-semibold pt-2">Jul 27, 2025</p>
-                </div>
+                    <div class="pt-4 pb-2 px-1">
+                        <div class="text-white title-22 mb-2">
+                            Lorem Ipsum is simply dummy text of the printing industry
+                        </div>
+                        <p class="text-white/50 title-14-semibold pt-2">Jul 27, 2025</p>
+                    </div>
+                </a>
             </article>
 
             <!-- News 3 -->
             <article
                 class="news-card shrink-0 w-full sm:w-auto snap-center rounded-[16px] border border-white/15 p-[30px]">
-                <div class="rounded-xl">
-                    <img src="./assets/images/inside_piramida.jpg" alt="Colorful Piramida interior space" loading="lazy"
-                        class="w-full h-[380px] object-cover rounded-[12px]" />
-                </div>
-                <div class="pt-4 pb-2 px-1">
-                    <div class="text-white title-22 mb-2">
-                        Lorem Ipsum is simply dummy text of the printing industry
+                <a href="#">
+                    <div class="rounded-xl">
+                        <img src="./assets/images/inside_piramida.jpg" alt="Colorful Piramida interior space"
+                            loading="lazy" class="w-full h-[380px] object-cover rounded-[12px]" />
                     </div>
-                    <p class="text-white/50 title-14-semibold pt-2">Jul 27, 2025</p>
-                </div>
+                    <div class="pt-4 pb-2 px-1">
+                        <div class="text-white title-22 mb-2">
+                            Lorem Ipsum is simply dummy text of the printing industry
+                        </div>
+                        <p class="text-white/50 title-14-semibold pt-2">Jul 27, 2025</p>
+                    </div>
+                </a>
             </article>
 
         </div>
-
         <!-- Dots (mobile only) -->
         <div id="newsDots" class="flex sm:hidden justify-center gap-2 mt-6">
             <button class="news-dot w-2 h-2 rounded-full bg-white/30 transition-all" data-index="0"

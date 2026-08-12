@@ -30,6 +30,12 @@
         .slot-diagonal {
             cursor: pointer;
         }
+
+        .slot-diagonal a {
+            display: block;
+            position: absolute;
+            inset: 0;
+        }
  
         /* hidden data holders — text lives in real divs now instead of data-* attributes */
         .slot-title,
@@ -199,6 +205,14 @@
                 border-radius: 0;
             }
  
+            .reel-image-wrap a {
+                position: absolute;
+                inset: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
             .reel-image-wrap img {
                 position: absolute;
                 inset: 0;
@@ -376,7 +390,9 @@
                 <!-- Card: Beat of Youth — bottom-right corner touches card 2's top-left corner -->
                 <article class="slot-diagonal absolute overflow-hidden"
                     style="right: calc(var(--card-w) * 2); bottom: calc(var(--card-h) * 2); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
-                    <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <a href="#" aria-label="Filmi: Asterix dhe Obelix: Misioni Kleopatra">
+                        <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    </a>
                     <div class="slot-title title_40">Filmi: “Asterix dhe Obelix: Misioni Kleopatra”</div>
                     <div class="slot-date title_16">November 8 - 11.30</div>
                 </article>
@@ -384,7 +400,9 @@
                 <!-- Card: Artist Talk — bottom-right corner touches card 3's top-left corner -->
                 <article class="slot-diagonal absolute overflow-hidden"
                     style="right: var(--card-w); bottom: var(--card-h); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
-                    <img src="./assets/images/event2.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <a href="#" aria-label="TUNG IDEVE 2026 – Spring School & Competition">
+                        <img src="./assets/images/event2.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    </a>
                     <div class="slot-title title_40">TUNG IDEVE 2026 – Spring School & Competition</div>
                     <div class="slot-date title_16">1–3 April 2026</div>
                 </article>
@@ -392,7 +410,9 @@
                 <!-- Card: GOCAT — anchored to container's bottom-right -->
                 <article class="slot-diagonal absolute overflow-hidden"
                     style="right: 0; bottom: 0; left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
-                    <img src="./assets/images/event3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <a href="#" aria-label="Glass Experience: Parent & Child Workshop">
+                        <img src="./assets/images/event3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    </a>
                     <div class="slot-title title_40">Glass Experience:
                         Parent & Child
                         Workshop</div>
@@ -407,7 +427,9 @@
                 <!-- Card: Jazz Nights — bottom-right corner touches card 2's top-left corner -->
                 <article class="slot-diagonal absolute overflow-hidden"
                     style="right: calc(var(--card-w) * 2); bottom: calc(var(--card-h) * 2); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
-                    <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <a href="#" aria-label="Jazz Nights">
+                        <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    </a>
                     <div class="slot-title title_40">Jazz Nights</div>
                     <div class="slot-date title_16">02 MAY · 21:00</div>
                 </article>
@@ -415,7 +437,9 @@
                 <!-- Card: Design Lab — bottom-right corner touches card 3's top-left corner -->
                 <article class="slot-diagonal absolute overflow-hidden"
                     style="right: var(--card-w); bottom: var(--card-h); left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
-                    <img src="./assets/images/event2.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <a href="#" aria-label="TUNG IDEVE 2026 – Spring School & Competition">
+                        <img src="./assets/images/event2.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    </a>
                     <div class="slot-title title_40">TUNG IDEVE 2026 – Spring School & Competition</div>
                     <div class="slot-date title_16">1–3 April 2026</div>
                 </article>
@@ -423,7 +447,9 @@
                 <!-- Card: Short Films — anchored to container's bottom-right -->
                 <article class="slot-diagonal absolute overflow-hidden"
                     style="right: 0; bottom: 0; left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
-                    <img src="./assets/images/event3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <a href="#" aria-label="Filmi: Asterix dhe Obelix: Misioni Kleopatra">
+                        <img src="./assets/images/event3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    </a>
                     <div class="slot-title title_40">Filmi: “Asterix dhe Obelix: Misioni Kleopatra”</div>
                     <div class="slot-date title_16">15 MAY</div>
                 </article>
@@ -436,7 +462,9 @@
                 <!-- Card: New Year Talks -->
                 <article class="slot-diagonal absolute overflow-hidden"
                     style="right: 0; bottom: 0; left: auto; top: auto; width: var(--card-w); height: var(--card-h);">
-                    <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    <a href="#" aria-label="Glass Experience">
+                        <img src="./assets/images/event1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+                    </a>
                     <div class="slot-title title_40">Glass Experience</div>
                     <div class="slot-date title_16">01 JAN 2026</div>
                 </article>
@@ -459,7 +487,9 @@
      <section id="eventsMobile" aria-label="Upcoming events">
         <div class="reel-item">
             <div class="reel-image-wrap">
-                <img src="./assets/images/event1.jpg" alt="" />
+                <a href="#" aria-label="Beat of Youth">
+                    <img src="./assets/images/event1.jpg" alt="" />
+                </a>
             </div>
             <div class="reel-date">12 APR · 19:00</div>
             <div class="reel-title">Beat of Youth</div>
@@ -467,7 +497,9 @@
  
         <div class="reel-item">
             <div class="reel-image-wrap">
-                <img src="./assets/images/event2.jpg" alt="" />
+                <a href="#" aria-label="Artist Talk">
+                    <img src="./assets/images/event2.jpg" alt="" />
+                </a>
             </div>
             <div class="reel-date">18 APR · 18:00</div>
             <div class="reel-title">Artist Talk</div>
@@ -475,7 +507,9 @@
  
         <div class="reel-item">
             <div class="reel-image-wrap">
-                <img src="./assets/images/event3.jpg" alt="" />
+                <a href="#" aria-label="GOCAT">
+                    <img src="./assets/images/event3.jpg" alt="" />
+                </a>
             </div>
             <div class="reel-date">24 APR · 20:30</div>
             <div class="reel-title">GOCAT</div>
@@ -483,7 +517,9 @@
  
         <div class="reel-item">
             <div class="reel-image-wrap">
-                <img src="./assets/images/event1.jpg" alt="" />
+                <a href="#" aria-label="Jazz Nights">
+                    <img src="./assets/images/event1.jpg" alt="" />
+                </a>
             </div>
             <div class="reel-date">02 MAY · 21:00</div>
             <div class="reel-title">Jazz Nights</div>
@@ -491,7 +527,9 @@
  
         <div class="reel-item">
             <div class="reel-image-wrap">
-                <img src="./assets/images/event2.jpg" alt="" />
+                <a href="#" aria-label="Design Lab">
+                    <img src="./assets/images/event2.jpg" alt="" />
+                </a>
             </div>
             <div class="reel-date">09 MAY · 17:00</div>
             <div class="reel-title">Design Lab</div>
@@ -499,7 +537,9 @@
  
         <div class="reel-item">
             <div class="reel-image-wrap">
-                <img src="./assets/images/event3.jpg" alt="" />
+                <a href="#" aria-label="Short Films">
+                    <img src="./assets/images/event3.jpg" alt="" />
+                </a>
             </div>
             <div class="reel-date">15 MAY · 20:00</div>
             <div class="reel-title">Short Films</div>
@@ -507,7 +547,9 @@
  
         <div class="reel-item">
             <div class="reel-image-wrap">
-                <img src="./assets/images/event1.jpg" alt="" />
+                <a href="#" aria-label="New Year Talks">
+                    <img src="./assets/images/event1.jpg" alt="" />
+                </a>
             </div>
             <div class="reel-date border-1 title_16">01 JAN · 19:00</div>
             <div class="reel-title">New Year Talks</div>

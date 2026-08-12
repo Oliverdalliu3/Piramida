@@ -53,6 +53,113 @@
   z-index: 5;
 }
 
+
+.video-clip {
+  -webkit-mask-image: url(#piramidaMask);
+  mask-image: url(#piramidaMask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.play-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(100px, 16vw, 160px);
+  height: clamp(100px, 16vw, 160px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.play-badge-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: badgeSpin 14s linear infinite;
+}
+
+/* Frosted-glass backing: this has to be a real HTML element with
+           backdrop-filter, not an SVG circle fill — backdrop-filter isn't
+           reliably supported on SVG shapes across browsers. Sized to match
+           the ring's 216/220 diameter ratio so it sits exactly behind it. */
+.play-badge-blur {
+  position: absolute;
+  inset: 2%;
+  border-radius: 50%;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Fallback for browsers without backdrop-filter support (older
+           Firefox, some in-app webviews): fall back to a translucent fill
+           so the badge still reads against any thumbnail, since a fully
+           transparent circle would be invisible without the blur. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .play-badge-blur {
+    background: rgba(255, 255, 255, 0.18);
+  }
+}
+
+.play-badge-text {
+  fill: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
+.play-badge-center {
+  position: relative;
+  width: 45%;
+  height: 45%;
+  border-radius: 50%;
+  background: #c6ff2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 200ms ease;
+}
+
+.play-badge:hover .play-badge-center {
+  transform: scale(1.06);
+}
+
+.play-badge-icon {
+  width: 32%;
+  height: 32%;
+  fill: #0a1435;
+  margin-left: 4%;
+}
+
+@keyframes badgeSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Once playing, fade the badge out and let clicks pass through to the video */
+.play-badge.is-playing {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
 @keyframes bob {
 
   0%,

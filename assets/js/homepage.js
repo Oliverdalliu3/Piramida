@@ -2,6 +2,13 @@ const track = document.getElementById("cardTrack");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+// Let the browser handle vertical page scrolling natively, but hand
+// horizontal gestures on this track entirely to our own swipe logic below.
+// Without this, touchstart can kick off a native horizontal scroll before
+// pointermove's preventDefault() has a chance to run, so the drag and our
+// next()/prev() snap end up fighting each other.
+track.style.touchAction = "pan-y";
+
 // ---- Infinite loop setup: clone all cards before and after ----
 const originalCards = Array.from(track.children);
 const cardCount = originalCards.length;
@@ -23,7 +30,13 @@ originalCards
 function cardStep() {
   const card = track.querySelector(".card-snap");
   if (!card) return 0;
-  const gap = parseFloat(getComputedStyle(track).columnGap || 16);
+  // getComputedStyle(track).columnGap can be the string "normal" (not just
+  // empty) when no gap is set, and "normal" is truthy — so the old
+  // `|| 16` fallback never ran and parseFloat("normal") silently produced
+  // NaN, breaking every scroll calculation downstream. Guard on the parsed
+  // number instead of the raw string.
+  const parsedGap = parseFloat(getComputedStyle(track).columnGap);
+  const gap = Number.isNaN(parsedGap) ? 16 : parsedGap;
   return card.getBoundingClientRect().width + gap;
 }
 
@@ -117,6 +130,11 @@ track.addEventListener("pointerdown", (e) => {
   swiped = false;
   startX = e.clientX;
   startY = e.clientY;
+  // Keep receiving pointermove/pointerup for this gesture even if the
+  // finger/cursor drags outside the track's bounds mid-swipe — without
+  // this, a drag that crosses the track's edge can silently stop firing
+  // events, leaving the swipe "stuck" with no next()/prev() ever called.
+  track.setPointerCapture(e.pointerId);
 });
 
 track.addEventListener("pointermove", (e) => {
@@ -158,3 +176,27 @@ track.addEventListener(
 track.querySelectorAll("img").forEach((img) => {
   img.addEventListener("dragstart", (e) => e.preventDefault());
 });
+
+(function () {
+  const video = document.getElementById("piramidaVideo");
+  const badge = document.getElementById("playBadge");
+
+  badge.addEventListener("click", () => {
+    video.play();
+  });
+
+  video.addEventListener("play", () => {
+    badge.classList.add("is-playing");
+    video.setAttribute("controls", "");
+  });
+
+  video.addEventListener("pause", () => {
+    badge.classList.remove("is-playing");
+    video.removeAttribute("controls");
+  });
+
+  video.addEventListener("ended", () => {
+    badge.classList.remove("is-playing");
+    video.removeAttribute("controls");
+  });
+})();

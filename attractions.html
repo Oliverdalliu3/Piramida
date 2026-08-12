@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attractions — preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <style>
+        /* Attractions carousel. Simple, static, single-declaration rules
+           (box-sizing reset, body background/margin, #attractions padding,
+           .attraction_title padding) are Tailwind utility classes directly on
+           the elements instead, since they didn't need a named rule.
+           Everything below either depends on CSS custom properties, media
+           queries, pseudo-classes, or multi-step transitions that read far
+           better as real CSS than as arbitrary-value Tailwind soup. */
+
+        #attractions .glow-a {
+            pointer-events: none;
+            position: absolute;
+            left: 50%;
+            top: -10%;
+            height: 520px;
+            width: 820px;
+            transform: translateX(-50%);
+            border-radius: 9999px;
+            background: rgba(32, 48, 156, .4);
+            filter: blur(110px);
+        }
+
+        #attractions .glow-b {
+            pointer-events: none;
+            position: absolute;
+            bottom: -15%;
+            right: -10%;
+            height: 380px;
+            width: 380px;
+            border-radius: 9999px;
+            background: rgba(15, 23, 74, .6);
+            filter: blur(100px);
+        }
+
+        /* Track: full-bleed, no left/right padding at all. Arrows are pinned
+     here at a fixed offset from center that only changes at breakpoints
+     — never mid-swipe — so they never appear to move while dragging.
+     Sizes below are fixed px (not rem) so they match the design specs
+     exactly and don't inflate with any inherited root font-size. */
+        #attractions [data-track] {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            /* crop anything that bleeds past the edge, no scrollbar */
+            /* Height is locked per breakpoint (below) to the tallest card — the
+       center card. Cards transition width/height on every swap; without a
+       fixed row height that transition ripples into the section's total
+       height and reads as a bounce. Locking it here stops that outright. */
+            height: 250px;
+            /* = center width 200px @ 4:5 */
+            --half-center: 100px;
+            /* half the center card's width, this breakpoint */
+            --arrow-gap: .5rem;
+            /* how far outside the center card's edge the arrow sits */
+        }
+
+        #attractions [data-cards] {
+            display: flex;
+            align-items: center;
+            /* space-between (not center) pins the outermost visible card flush to
+       the row's true left/right edge — zero side space — and turns any
+       leftover width into the gaps between cards automatically, at any
+       viewport size. `gap` below is just a floor so cards never touch on
+       very narrow screens. */
+            justify-content: space-between;
+            gap: 1.25rem;
+            width: 100%;
+            height: 100%;
+        }
+
+        #attractions .attraction-card {
+            display: none;
+            flex-shrink: 0;
+            margin: 0;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .6);
+            transition: width .4s cubic-bezier(.22, .61, .36, 1), transform .4s cubic-bezier(.22, .61, .36, 1), opacity .4s ease;
+        }
+
+        #attractions .attraction-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #attractions .attraction-card.is-center {
+            display: block;
+            width: 200px;
+            aspect-ratio: 4 / 5;
+            z-index: 10;
+        }
+
+        #attractions .attraction-card.is-near-left,
+        #attractions .attraction-card.is-near-right {
+            display: block;
+            width: 75px;
+            aspect-ratio: 4 / 5;
+            opacity: .6;
+            /* second image out from center: 60% */
+        }
+
+        #attractions .attraction-card.is-near-left {
+            transform: translateY(1rem) rotate(-4deg);
+        }
+
+        #attractions .attraction-card.is-near-right {
+            transform: translateY(1rem) rotate(4deg);
+        }
+
+        #attractions .attraction-card.is-far-left,
+        #attractions .attraction-card.is-far-right {
+            display: block;
+            width: 48px;
+            aspect-ratio: 4 / 5;
+            opacity: .1;
+            /* third image out from center: 10% */
+        }
+
+        #attractions .attraction-card.is-far-left {
+            transform: translateY(2rem) rotate(-8deg);
+        }
+
+        #attractions .attraction-card.is-far-right {
+            transform: translateY(2rem) rotate(8deg);
+        }
+
+        #attractions .attraction-card.is-hidden {
+            display: none;
+        }
+
+        /* Caption content lives inside each card as real markup (not data-*
+     attributes) so it's readable/editable in the DOM and by CMS tooling.
+     It's visually hidden — the visible caption below is populated from it.
+     flex+gap, not each class's own margin, controls the spacing between
+     tag/title/desc — keeps it consistent no matter what margins
+     title_16-600 / title-32-600 / title-16 carry. */
+        #attractions .attraction-content {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+        }
+
+        @media (max-width: 767px) {
+            #attractions [data-track] {
+                height: 250px;
+                --half-center: 100px;
+            }
+
+            #attractions .attraction-card.is-center {
+                width: 200px;
+            }
+
+            #attractions .attraction-card.is-near-left,
+            #attractions .attraction-card.is-near-right {
+                width: 75px;
+                opacity: .6;
+            }
+
+            #attractions .attraction-card.is-far-left,
+            #attractions .attraction-card.is-far-right {
+                display: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #attractions [data-track] {
+                height: 370px;
+                --half-center: 148px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            #attractions [data-track] {
+                /* center image height per design: 475px */
+                height: 475px;
+                --half-center: 190px;
+            }
+
+            #attractions .attraction-card.is-center {
+                /* 380 x 475 = 4:5 */
+                width: 380px;
+            }
+
+            #attractions .attraction-card.is-near-left,
+            #attractions .attraction-card.is-near-right {
+                width: 176px;
+            }
+
+            #attractions .attraction-card.is-far-left,
+            #attractions .attraction-card.is-far-right {
+                width: 117px;
+            }
+        }
+
+        /* Arrows: fixed at 50% ± half-center, offset outward by --arrow-gap.
+     Purely CSS-driven from the custom properties above, so nothing about
+     their position ever recalculates on next()/prev() — they stay locked
+     to the center of the track through every swipe. */
+        #attractions [data-prev],
+        #attractions [data-next] {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 20;
+            display: flex;
+            height: 2.25rem;
+            width: 2.25rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background: #CBFF00;
+            color: #0F174A;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, .6);
+        }
+
+        #attractions [data-prev] {
+            transform: translate(calc(-100% - var(--half-center) - var(--arrow-gap)), -50%);
+        }
+
+        #attractions [data-next] {
+            transform: translate(calc(var(--half-center) + var(--arrow-gap)), -50%);
+        }
+
+        #attractions [data-prev]:hover,
+        #attractions [data-next]:hover {
+            transform-origin: center;
+            filter: brightness(1.05);
+        }
+
+        #attractions .caption {
+            position: relative;
+            z-index: 1;
+            max-width: 40rem;
+            margin: 3rem auto 0;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        #attractions .caption [data-caption-tag] {
+            font-size: .75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .25em;
+            color: rgba(255, 255, 255, .5);
+            transition: opacity .2s ease;
+        }
+
+        #attractions .caption [data-caption-title] {
+            margin: .75rem 0 0;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #CBFF00;
+            transition: opacity .2s ease;
+        }
+
+        #attractions .caption [data-caption-desc] {
+            margin-top: 1rem;
+            font-size: .95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .7);
+            transition: opacity .2s ease;
+        }
+    </style>
+</head>
+
+<body class="m-0 bg-[#0A1142] font-sans text-white overflow-x-hidden">
+    <header class="site-header absolute top-0 left-0 w-full z-50 bg-transparent">
+        <nav class="header-inner">
+            <a href="/" class="header-logo" aria-label="Piramida homepage">
+                <img src="./assets/images/logo piramida.svg" alt="Piramida logo" />
+            </a>
+
+            <button id="openMenu" class="menu-open-button" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="mobileMenu">
+                <img src="./assets/images/menu icon.svg" alt="" class="h-8 w-8 object-contain" />
+            </button>
+        </nav>
+    </header>
+
+    <!-- Fullscreen menu -->
+    <div id="mobileMenu" aria-hidden="true">
+        <!-- Close button -->
+        <button id="closeMenu" class="menu-close-button" type="button" aria-label="Close menu">
+            <img src="./assets/images/Cross.svg" alt="" class="h-8 w-8 object-contain" />
+        </button>
+
+        <div class="menu-layout">
+            <!-- Left side -->
+            <section class="menu-left">
+                <img src="./assets/images/logo piramida.svg" alt="Piramida logo" class="menu-logo" />
+
+                <nav class="menu-main-navigation" aria-label="Main navigation">
+                    <ul>
+                        <li>
+                            <a href="#" class="mobile-main-link">Education</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Innovation</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Business</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Art &amp; Culture</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Events</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Attractions</a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link"> Museum </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="mobile-main-link">Rent a Space</a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+
+            <!-- Right side -->
+            <section class="menu-right">
+                <div class="menu-right-content">
+                    <nav class="menu-secondary-links" aria-label="Secondary navigation">
+                        <a href="#" class="mobile-small-link">About us</a>
+                        <a href="#" class="mobile-small-link">News</a>
+                        <a href="#" class="mobile-small-link">Careers</a>
+                        <a href="#" class="mobile-small-link">Contact</a>
+                    </nav>
+
+                    <div class="menu-bottom-content">
+                        <div class="menu-policy-links">
+                            <a href="#" class="mobile-footer-link">
+                                Terms &amp; Conditions
+                            </a>
+
+                            <a href="#" class="mobile-footer-link">Privacy Policy</a>
+                        </div>
+
+                        <div class="menu-social-links">
+                            <a href="#" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14 8H17V4H14C10.7 4 9 6 9 9V11H6V15H9V22H13V15H16L17 11H13V9C13 8.3 13.3 8 14 8Z"
+                                        stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+
+                            <a href="#" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"
+                                        stroke-width="1.7" />
+
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7" />
+
+                                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center bg-[#0F174A] h-40">
+                    <button
+                        class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#0F174A] shadow-sm transition hover:shadow-md">
+                        <span>Explore All</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <section id="attractions" class="relative overflow-hidden py-20">
+
+
+        <div class="title-60 text-center text-[#CBFF00] uppercase p-[50px]">
+            Attractions</div>
+
+        <div data-track>
+            <button data-prev type="button" aria-label="Previous attraction">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <div data-cards>
+                <figure class="attraction-card" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1753702449465-6100831e4b6f?w=900&auto=format&fit=crop&q=60"
+                        alt="Rooftop garden" />
+                    <div class="attraction-content">
+                        <div class="tag title_16-600 text-[#FFFFFF]">Rooftop Garden</div>
+                        <div class="title title-32-600 text-[#CBFF00]">Greenery Between the Concrete</div>
+                        <div class="desc title-16">Pockets of planting break up the hard lines of the architecture, giving visitors a place to pause between galleries and workshops.</div>
+                    </div>
+                </figure>
+
+                <figure class="attraction-card" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1489773072903-7209418b9342?w=900&auto=format&fit=crop&q=60"
+                        alt="City rooftop view" />
+                    <div class="attraction-content">
+                        <div class="tag title_16-600 text-[#FFFFFF]">City Rooftop</div>
+                        <div class="title title-32-600 text-[#CBFF00]">Above the Skyline</div>
+                        <div class="desc title-16">Step out onto the open terrace where the city unfolds beneath you. A quiet perch above the noise, built for slowing down and watching the light change at dusk.</div>
+                    </div>
+                </figure>
+
+                <figure class="attraction-card" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1757778718372-a286a1662798?w=1200&auto=format&fit=crop&q=60"
+                        alt="Spiral stairs from above" />
+                    <div class="attraction-content">
+                        <div class="tag title_16-600 text-[#FFFFFF]">100 Stairs</div>
+                        <div class="title title-32-600 text-[#CBFF00]">Ascending Through Layers of Design</div>
+                        <div class="desc title-16">Step into a striking architectural experience where movement becomes part of the design. The 100 Stairs offer a visually captivating journey, with layered pathways, clean geometric lines, and ever-changing perspectives at every turn.</div>
+                    </div>
+                </figure>
+
+                <figure class="attraction-card" data-index="3">
+                    <img src="https://plus.unsplash.com/premium_photo-1667223579946-ab21d2beb736?w=900&auto=format&fit=crop&q=60"
+                        alt="Bell tower among trees" />
+                    <div class="attraction-content">
+                        <div class="tag title_16-600 text-[#FFFFFF]">Bell Park</div>
+                        <div class="title title-32-600 text-[#CBFF00]">A Landmark Beneath the Trees</div>
+                        <div class="desc title-16">Find the bell standing quietly among the trees, a small monument that anchors the park. A familiar meeting point for visitors passing through on their way inside.</div>
+                    </div>
+                </figure>
+
+                <figure class="attraction-card" data-index="4">
+                    <img src="https://images.unsplash.com/photo-1694706196069-78e1eca224a1?w=900&auto=format&fit=crop&q=60"
+                        alt="Reflecting pool" />
+                    <div class="attraction-content">
+                        <div class="tag title_16-600 text-[#FFFFFF]">Reflecting Pool</div>
+                        <div class="title title-32-600 text-[#CBFF00]">Stillness at Ground Level</div>
+                        <div class="desc title-16">A shallow pool that mirrors the structure above it, turning the building itself into part of the view. Best visited in the early morning, before the light gets busy.</div>
+                    </div>
+                </figure>
+            </div>
+
+            <button data-next type="button" aria-label="Next attraction">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="caption">
+            <div class="tag" data-caption-tag></div>
+            <div data-caption-title></div>
+            <div data-caption-desc></div>
+        </div>
+    </section>
+
+    <footer id="footer"
+        class="relative overflow-hidden bg-[#000929] text-white md:bg-[radial-gradient(circle_at_top_right,#000000_0%,#000000_18%,#020503_55%,#020503_100%)]">
+        <!-- Mobile glow effects -->
+        <div class="glow-top-1 md:hidden" aria-hidden="true"></div>
+        <div class="glow-top-2 md:hidden" aria-hidden="true"></div>
+        <div class="glow-left md:hidden" aria-hidden="true"></div>
+
+        <!-- Desktop glow effects -->
+        <div class="desktop-glow-left hidden md:block" aria-hidden="true"></div>
+        <div class="desktop-glow-bottom hidden md:block" aria-hidden="true"></div>
+        <div class="desktop-glow-bottom-center hidden md:block" aria-hidden="true"></div>
+        <div class="desktop-glow-bottom-right hidden md:block" aria-hidden="true"></div>
+        <!-- Mobile footer -->
+        <div class="relative z-10 mx-auto max-w-7xl px-[1.5rem] py-10 md:hidden">
+            <a href="/" class="inline-block">
+                <img src="./assets/images/logo piramida.svg" alt="Piramida"
+                    class="mt-2 h-[22px] w-[50px] object-contain" />
+            </a>
+
+            <div class="mt-3 text-[14px] font-normal tracking-wide">
+                Reimagining space. Inspiring creativity.
+            </div>
+
+            <div class="mt-12 flex items-end justify-between gap-6">
+                <div>
+                    <div class="text-[14px] uppercase tracking-wide">Quick Contact</div>
+
+                    <a href="mailto:hello@piramida.edu.al"
+                        class="mt-2 block text-[14px] tracking-wide text-[#CBFF00] hover:underline">
+                        hello@piramida.edu.al
+                    </a>
+
+                    <a href="tel:+3551234567890"
+                        class="mt-2 block text-[14px] tracking-wide text-[#CBFF00] hover:underline">
+                        +355 1234567890
+                    </a>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-5">
+                    <a href="#" aria-label="Facebook"
+                        class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]">
+                        <img src="./assets/images/facebook.svg" class="h-5 w-auto object-contain" alt="" />
+                    </a>
+
+                    <a href="#" aria-label="Instagram"
+                        class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]">
+                        <img src="./assets/images/Ig.svg" class="h-5 w-auto object-contain" alt="" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <div class="text-center text-[12px] font-normal uppercase tracking-wide">
+                    Partnerët tanë
+                </div>
+
+                <div class="relative left-1/2 mt-3 w-screen -translate-x-1/2 border-t border-white/10"
+                    aria-hidden="true"></div>
+
+                <div class="mt-4 flex items-center justify-center gap-3">
+                    <img src="./assets/images/tumo-finale2 1.svg" class="h-8 w-[75px] object-contain" alt="Tumo" />
+                    <img src="./assets/images/aadffinalk-logo 1.svg" class="h-8 w-[75px] object-contain" alt="AADF" />
+                    <img src="./assets/images/bashkia2 1.svg" class="h-8 w-[75px] object-contain"
+                        alt="Bashkia Tiranë" />
+                </div>
+            </div>
+
+            <div class="mt-8 text-center text-[11px] tracking-wide text-white/30">
+                © 2026 Piramida. All rights reserved.
+            </div>
+        </div>
+
+        <!-- Desktop footer -->
+        <div
+            class="relative z-10 mx-auto hidden max-w-[1920px] bg-transparent px-[8%] pt-[6%] md:block xl:px-[8.2%] pb-[2%]">
+            <div class="grid grid-cols-[minmax(0,1fr)_auto_auto] items-start gap-[80px] xl:gap-[120px]">
+                <div>
+                    <a href="/" class="inline-block">
+                        <img src="./assets/images/logo piramida.svg" alt="Piramida"
+                            class="h-[40px] w-[90px] object-contain" />
+                    </a>
+
+                    <div class="mt-6 text-[16px] font-normal tracking-wide">
+                        Reimagining space. Inspiring creativity.
+                    </div>
+
+                    <div class="mt-16">
+                        <div class="text-[12px] font-normal uppercase tracking-wide text-white/90">
+                            Partnerët tanë
+                        </div>
+
+                        <div class="-ml-[25px] mt-5 flex items-start justify-start">
+                            <img src="./assets/images/aadffinalk-logo 1.svg" class="h-[40px] w-[102px] object-contain"
+                                alt="AADF" />
+                            <img src="./assets/images/bashkia2 1.svg" class="h-[40px] w-[102px] object-contain"
+                                alt="Bashkia Tiranë" />
+                            <img src="./assets/images/tumo-finale2 1.svg" class="h-[40px] w-[102px] object-contain"
+                                alt="Tumo" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="min-w-[170px]">
+                    <div class="text-[18px] font-normal tracking-wide">Company</div>
+
+                    <nav class="mt-5 flex flex-col gap-4 text-[14px]" aria-label="Footer company navigation">
+                        <a href="#" class="group flex items-center">
+                            <span
+                                class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                                aria-hidden="true">
+                                →
+                            </span>
+                            <span>About Us</span>
+                        </a>
+
+                        <a href="#" class="group flex items-center">
+                            <span
+                                class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                                aria-hidden="true">
+                                →
+                            </span>
+                            <span>Careers</span>
+                        </a>
+
+                        <a href="#" class="group flex items-center">
+                            <span
+                                class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                                aria-hidden="true">
+                                →
+                            </span>
+                            <span>Terms &amp; Conditions</span>
+                        </a>
+
+                        <a href="#" class="group flex items-center">
+                            <span
+                                class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                                aria-hidden="true">
+                                →
+                            </span>
+                            <span>Privacy Policy</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="min-w-[240px] border-l border-white/10 pl-[70px]">
+                    <div class="text-[18px] font-normal tracking-wide opacity-85">
+                        Quick Contact
+                    </div>
+
+                    <a href="mailto:hello@piramida.edu.al"
+                        class="mt-4 block text-[16px] tracking-wide text-[#CBFF00] hover:underline opacity-85">
+                        hello@piramida.edu.al
+                    </a>
+
+                    <a href="tel:+3551234567890"
+                        class="mt-3 block text-[16px] tracking-wide hover:underline opacity-85">
+                        +355 1234567890
+                    </a>
+
+                    <div class="mt-9 flex items-center gap-6">
+                        <a href="#" aria-label="Facebook"
+                            class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]">
+                            <img src="./assets/images/facebook.svg" class="h-[25px] w-[14px] object-contain" alt="" />
+                        </a>
+
+                        <a href="#" aria-label="Instagram"
+                            class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]">
+                            <img src="./assets/images/Ig.svg" class="h-[21px] w-[21px] object-contain" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-[120px]">
+                <span
+                    class="inline-flex rounded-full border border-white/50 px-5 py-2 text-[14px] font-normal uppercase tracking-wide">
+                    Lorem ipsum text
+                </span>
+
+                <div class="mt-8 flex items-center justify-between gap-8">
+                    <div class="text-[90px] font-normal uppercase leading-none tracking-tight xl:text-[120px]">
+                        Piramida
+                    </div>
+
+                    <a href="#top" aria-label="Back to top"
+                        class="group flex h-[105px] w-[105px] shrink-0 items-center justify-center rounded-full border border-white/50 transition-colors duration-300 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00] focus-visible:ring-offset-4 focus-visible:ring-offset-[#020503]">
+                        <svg class="h-[55px] w-[55px] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                            viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M14 50L49 15" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                            <path d="M25 15H49V39" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        (function () {
+            const root = document.getElementById("attractions");
+            const cards = root.querySelector("[data-cards]");
+            const prevBtn = root.querySelector("[data-prev]");
+            const nextBtn = root.querySelector("[data-next]");
+            const tagEl = root.querySelector("[data-caption-tag]");
+            const titleEl = root.querySelector("[data-caption-title]");
+            const descEl = root.querySelector("[data-caption-desc]");
+            const ROLE_CLASSES = ["is-center", "is-near-left", "is-near-right", "is-far-left", "is-far-right", "is-hidden"];
+
+            function centerCard() {
+                const children = Array.from(cards.children);
+                return children[Math.floor(children.length / 2)];
+            }
+
+            // Assigns a role class by distance from center — works for any number
+            // of cards, not just five.
+            function applyRoles() {
+                const children = Array.from(cards.children);
+                const centerIndex = Math.floor(children.length / 2);
+                children.forEach((el, i) => {
+                    el.classList.remove(...ROLE_CLASSES);
+                    const d = i - centerIndex;
+                    if (d === 0) el.classList.add("is-center");
+                    else if (d === -1) el.classList.add("is-near-left");
+                    else if (d === 1) el.classList.add("is-near-right");
+                    else if (d === -2) el.classList.add("is-far-left");
+                    else if (d === 2) el.classList.add("is-far-right");
+                    else el.classList.add("is-hidden");
+                });
+            }
+
+            // Reads caption content from the card's own markup (.attraction-content
+            // divs) instead of data-* attributes.
+            function readContent(card) {
+                const content = card.querySelector(".attraction-content");
+                if (!content) return { tag: "", title: "", desc: "" };
+                return {
+                    tag: content.querySelector(".tag")?.textContent.trim() || "",
+                    title: content.querySelector(".title")?.textContent.trim() || "",
+                    desc: content.querySelector(".desc")?.textContent.trim() || "",
+                };
+            }
+
+            function syncCaption() {
+                const active = centerCard();
+                if (!active) return;
+                const { tag, title, desc } = readContent(active);
+                [tagEl, titleEl, descEl].forEach(el => el.style.opacity = 0);
+                setTimeout(() => {
+                    tagEl.textContent = tag;
+                    titleEl.textContent = title;
+                    descEl.textContent = desc;
+                    [tagEl, titleEl, descEl].forEach(el => el.style.opacity = 1);
+                }, 150);
+            }
+
+            function render() { applyRoles(); syncCaption(); }
+            function next() { cards.appendChild(cards.firstElementChild); render(); }
+            function prev() { cards.insertBefore(cards.lastElementChild, cards.firstElementChild); render(); }
+
+            prevBtn.addEventListener("click", prev);
+            nextBtn.addEventListener("click", next);
+
+            // Swipe
+            let startX = 0, dragging = false, fired = false;
+            cards.addEventListener("pointerdown", (e) => {
+                if (e.target.closest("[data-prev],[data-next]")) return;
+                dragging = true; fired = false; startX = e.clientX;
+                window.addEventListener("pointermove", onMove);
+                window.addEventListener("pointerup", onUp);
+            });
+            function onMove(e) {
+                if (!dragging || fired) return;
+                const dx = e.clientX - startX;
+                if (Math.abs(dx) > 60) { fired = true; dx < 0 ? next() : prev(); }
+            }
+            function onUp() {
+                dragging = false;
+                window.removeEventListener("pointermove", onMove);
+                window.removeEventListener("pointerup", onUp);
+            }
+
+            render();
+        })();
+    </script>
+</body>
+
+</html>
