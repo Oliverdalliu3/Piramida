@@ -1,39 +1,57 @@
 (() => {
-  const carousel = document.querySelector(".event-spaces-carousel");
+  const setupCarousel = (
+    carouselSelector,
+    trackSelector,
+    itemSelector,
+    previousSelector,
+    nextSelector,
+  ) => {
+    document.querySelectorAll(carouselSelector).forEach((carousel) => {
+      const track = carousel.querySelector(trackSelector);
+      const previousButton = carousel.querySelector(previousSelector);
+      const nextButton = carousel.querySelector(nextSelector);
 
-  if (carousel) {
-    const track = carousel.querySelector(".event-spaces-card-track");
-    const previousButton = carousel.querySelector(
-      ".event-spaces-carousel-arrow-left",
-    );
-    const nextButton = carousel.querySelector(
-      ".event-spaces-carousel-arrow-right",
-    );
+      if (track && previousButton && nextButton) {
+        const getStep = () => {
+          const firstItem = track.querySelector(itemSelector);
+          const styles = window.getComputedStyle(track);
+          const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
 
-    if (track && previousButton && nextButton) {
-      const getStep = () => {
-        const firstCard = track.querySelector(".event-spaces-card");
-        const styles = window.getComputedStyle(track);
-        const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+          return firstItem ? firstItem.getBoundingClientRect().width + gap : 320;
+        };
 
-        return firstCard ? firstCard.getBoundingClientRect().width + gap : 320;
-      };
-
-      previousButton.addEventListener("click", () => {
-        track.scrollBy({
-          left: -getStep(),
-          behavior: "smooth",
+        previousButton.addEventListener("click", () => {
+          track.scrollBy({
+            left: -getStep(),
+            behavior: "smooth",
+          });
         });
-      });
 
-      nextButton.addEventListener("click", () => {
-        track.scrollBy({
-          left: getStep(),
-          behavior: "smooth",
+        nextButton.addEventListener("click", () => {
+          track.scrollBy({
+            left: getStep(),
+            behavior: "smooth",
+          });
         });
-      });
-    }
-  }
+      }
+    });
+  };
+
+  setupCarousel(
+    ".event-spaces-carousel",
+    ".event-spaces-card-track",
+    ".event-spaces-card",
+    ".event-spaces-carousel-arrow-left",
+    ".event-spaces-carousel-arrow-right",
+  );
+
+  setupCarousel(
+    ".leasing-form-carousel",
+    ".leasing-form-gallery",
+    "img",
+    ".leasing-form-carousel-arrow-left",
+    ".leasing-form-carousel-arrow-right",
+  );
 
   const modal = document.getElementById("book-event-space-modal");
   const openButtons = document.querySelectorAll("[data-open-event-modal]");

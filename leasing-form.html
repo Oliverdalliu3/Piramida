@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="leasing-form-document" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="./assets/css/footer.css" />
     <link rel="stylesheet" href="./assets/css/event-spaces.css" />
     <link rel="stylesheet" href="./assets/css/event-spaces-popup.css" />
+    <link rel="stylesheet" href="./assets/css/leasing-form.css?v=20260908-11" />
 
-    <title>Event Spaces</title>
+    <title>Leasing</title>
   </head>
 
-  <body class="min-h-screen overflow-x-hidden text-white">
-    <div class="desktop-page-background">
+  <body class="leasing-form-page min-h-screen overflow-x-hidden text-white">
+    <div class="desktop-page-background leasing-form-background">
       <!-- Navbar -->
       <header
         class="site-header absolute top-0 left-0 w-full z-50 bg-transparent"
@@ -176,6 +177,370 @@
       </div>
 
       <main id="main-content" class="event-spaces-main">
+        <section class="leasing-form-hero" aria-labelledby="leasing-form-title">
+          <div class="leasing-form-title-wrap">
+            <div id="leasing-form-title" class="leasing-form-title">
+              <span>PIRAMIDA</span><span>LEASING</span>
+            </div>
+            <p class="leasing-form-kicker">
+              Sigurohuni t&euml; plot&euml;soni t&euml; gjitha t&euml;
+              dh&euml;nat e sakta
+              <span
+                >si edhe t&euml; ngarkoni t&euml; gjith&euml; dokumentet sipas
+                k&euml;rkes&euml;s.</span
+              >
+            </p>
+          </div>
+
+          <div class="leasing-form-carousel">
+            <button
+              class="leasing-form-carousel-arrow leasing-form-carousel-arrow-left"
+              type="button"
+              aria-label="Previous leasing images"
+            >
+              <span aria-hidden="true"></span>
+            </button>
+
+            <div class="leasing-form-gallery" aria-label="Piramida spaces">
+              <img
+                src="./assets/images/c0d7437a3950068afe0cd31c4fea121c5ccd6442 (1).jpg"
+                alt=""
+              />
+              <img src="./assets/images/rent-leasing.jpg" alt="" />
+              <img src="./assets/images/rent-event-spaces.jpg" alt="" />
+              <img
+                src="./assets/images/513a15bf08553429fdf22d302de80799941a90ae (1).jpg"
+                alt=""
+              />
+              <img
+                src="./assets/images/4d4494e51518b0723ba377d776658e219fecc676 (1).jpg"
+                alt=""
+              />
+              <img
+                src="./assets/images/0be2fd837e46e1dbbfbe5ecb17f7d2ef1799e7c9 (1).png"
+                alt=""
+              />
+            </div>
+
+            <button
+              class="leasing-form-carousel-arrow leasing-form-carousel-arrow-right"
+              type="button"
+              aria-label="Next leasing images"
+            >
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="leasing-form-carousel-pagination" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="leasing-form-content">
+            <p class="leasing-form-description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since 1966, when designers at Letraset and James Mosley, the
+              librarian at St Bride Printing Library in London, took a 1914
+              Cicero translation and scrambled it to make dummy text for
+              Letraset's Body Type sheets.
+            </p>
+
+            <div class="leasing-form-summary" aria-label="Leasing details">
+              <div class="space-name">
+                <span>Emertimi i ambientit</span>
+                <strong>Lorem ipsum text</strong>
+              </div>
+              <div class="position">
+                <span>Pozicioni</span>
+                <strong>Ground Floor - L0</strong>
+              </div>
+              <div class="service-category">
+                <span>Kategoria e sherbimit</span>
+                <strong>Mix Digital</strong>
+              </div>
+              <div class="area">
+                <span>Siperfaqja</span>
+                <strong>110.2m2</strong>
+              </div>
+              <a class="leasing-form-plan" href="#">Planimetria</a>
+            </div>
+
+            <form
+              class="leasing-application-form"
+              action="#"
+              method="post"
+              autocomplete="off"
+            >
+              <fieldset>
+                <legend>1. Informacioni i Aplikantit</legend>
+                <div class="leasing-form-grid leasing-form-grid-4">
+                  <label>
+                    <span>Subjekti</span>
+                    <input type="text" name="subject" />
+                  </label>
+                  <label>
+                    <span>NIPT</span>
+                    <input type="text" name="nipt" />
+                  </label>
+                  <label>
+                    <span>Adresa</span>
+                    <input type="text" name="address" />
+                  </label>
+                  <label>
+                    <span>Qyteti</span>
+                    <input type="text" name="city" />
+                  </label>
+                  <label>
+                    <span>Lloji i entitetit</span>
+                    <select name="entityType">
+                      <option>Korporate</option>
+                      <option>Retail</option>
+                      <option>Hospitality</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Viti i themelimit</span>
+                    <input type="text" name="founded" />
+                  </label>
+                  <label>
+                    <span>Xhiro vjetore</span>
+                    <input type="text" name="annualTurnover" />
+                  </label>
+                  <label>
+                    <span>Numri i punonjesve</span>
+                    <input type="number" name="employees" min="0" />
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>2. Personi i kontaktit</legend>
+                <div class="leasing-form-grid leasing-form-grid-3">
+                  <label>
+                    <span>Emri</span>
+                    <input type="text" name="contactFirstName" />
+                  </label>
+                  <label>
+                    <span>Mbiemri</span>
+                    <input type="text" name="contactLastName" />
+                  </label>
+                  <label>
+                    <span>Pozicioni</span>
+                    <input type="text" name="contactPosition" />
+                  </label>
+                  <label>
+                    <span>Telefon</span>
+                    <input type="tel" name="phone" />
+                  </label>
+                  <label>
+                    <span>Celular</span>
+                    <input type="tel" name="mobile" />
+                  </label>
+                  <label>
+                    <span>Email</span>
+                    <input type="email" name="email" />
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>3. Oferta juaj</legend>
+                <div class="leasing-form-grid leasing-form-grid-3">
+                  <label>
+                    <span>Oferta juaj per m2 / Eur (min. 22.00 EUR)</span>
+                    <input type="text" name="monthlyOffer" />
+                  </label>
+                  <label>
+                    <span>Qira mujore sipas ofertes (110.2m2)</span>
+                    <input type="text" name="leaseOffer" />
+                  </label>
+                  <label>
+                    <span>Pozicioni</span>
+                    <select name="position">
+                      <option>Teknologji/Inovacion</option>
+                      <option>Art &amp; Culture</option>
+                      <option>Business</option>
+                    </select>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>4. Ngarkoni dokumentet</legend>
+                <div class="leasing-upload-guidelines">
+                  <p>a) Formatet e pranuara: PDF, DOC, DOCX</p>
+                  <p>b) Cdo dokument duhet te kete emer unik.</p>
+                  <p>c) Madhesia maksimale: 4 MB</p>
+                </div>
+
+                <div class="leasing-form-grid leasing-documents-grid">
+                  <label
+                    class="leasing-file-field"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.1. Profili i kompanise</span>
+                    <input
+                      type="file"
+                      name="companyProfile"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.2. Ekstrakt QKB</span>
+                    <input
+                      type="file"
+                      name="qkbExtract"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.3. Certifikate e nr te punonjesve</span>
+                    <input
+                      type="file"
+                      name="employeeCertificate"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.4. Vertetim i mosdenimit</span>
+                    <input
+                      type="file"
+                      name="criminalRecordCertificate"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label class="leasing-select-field">
+                    <span>4.5. Vertetim për mungesë padish</span>
+                    <select name="lawsuitCertificateType">
+                      <option>Korporate</option>
+                      <option>Individual</option>
+                    </select>
+                  </label>
+                  <label
+                    class="leasing-file-field"
+                    data-file-label="Attach File"
+                  >
+                    <span
+                      >4.6. Vertetim qe kompania nuk eshte proces
+                      likujdimi</span
+                    >
+                    <input
+                      type="file"
+                      name="liquidationCertificate"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.7. Vertetim qe kompania s'ka detyrime taksash</span>
+                    <input
+                      type="file"
+                      name="taxCertificate"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.8. Pasqyrat financiare</span>
+                    <input
+                      type="file"
+                      name="financialStatements"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field leasing-file-field-wide"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.9. Oferta financiare</span>
+                    <input
+                      type="file"
+                      name="financialOffer"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field leasing-file-field-wide"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.10. Koncepti</span>
+                    <input
+                      type="file"
+                      name="concept"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                  <label
+                    class="leasing-file-field leasing-file-field-wide"
+                    data-file-label="Attach File"
+                  >
+                    <span>4.11. Dokumente te tjera</span>
+                    <input
+                      type="file"
+                      name="otherDocuments"
+                      accept=".pdf,.doc,.docx"
+                    />
+                  </label>
+                </div>
+              </fieldset>
+
+              <label class="leasing-consent">
+                <input type="checkbox" name="dataConsent" autocomplete="off" />
+                <span
+                  >Duke derguar kete forme, une jam dakort te ndaj te dhenat e
+                  mia me organizatorin e ketij ankandi.</span
+                >
+              </label>
+
+              <div class="leasing-step-actions">
+                <button class="leasing-back-button" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M19 12H5M11 6l-6 6 6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span>KTHEHU</span>
+                </button>
+
+                <button class="leasing-submit-button" type="submit">
+                  <span>Apliko k&euml;tu!</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M5 12h14M13 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
         <section
           class="event-spaces-desktop"
           aria-labelledby="event-spaces-desktop-title"
@@ -185,14 +550,14 @@
               id="event-spaces-desktop-title"
               class="event-spaces-desktop-title"
             >
-              <span>Event</span><span>Spaces</span>
+              <span>LEASING</span>
             </div>
 
             <p class="event-spaces-desktop-description">
-              The event spaces at Piramida Tirana are designed to host a wide
-              range of activities, from exhibitions and workshops to talks and
-              cultural events. Whether for creative or professional use, the
-              venues offer settings that bring people and ideas together.
+              Flexible opportunities for businesses, creatives and hospitality
+              concepts. Located in a central cultural hub with strong visibility
+              and high foot traffic, they provide an ideal environment for
+              growth, collaboration, and public engagement.
             </p>
           </div>
 
@@ -879,9 +1244,9 @@
             <span aria-hidden="true"></span>
           </button>
 
-          <h1 id="book-event-space-title" class="event-space-title">
+          <div id="book-event-space-title" class="event-space-title">
             Book an Event Space
-          </h1>
+          </div>
           <p class="event-space-subtitle hidden md:block">
             Provide your event details and we will confirm availability
           </p>
@@ -1016,6 +1381,147 @@
     </div>
 
     <script src="./assets/js/menu.js" defer></script>
-    <script src="./assets/js/event-spaces-gallery.js" defer></script>
+    <script
+      src="./assets/js/event-spaces-gallery.js?v=20260903-2"
+      defer
+    ></script>
+    <script>
+      const leasingForm = document.querySelector(".leasing-application-form");
+
+      if (leasingForm) {
+        const mobileQuery = window.matchMedia("(max-width: 767px)");
+        const leasingHero = leasingForm.closest(".leasing-form-hero");
+        const fieldsets = Array.from(leasingForm.querySelectorAll("fieldset"));
+        const submitButton = leasingForm.querySelector(
+          ".leasing-submit-button",
+        );
+        const backButton = leasingForm.querySelector(".leasing-back-button");
+        const consentInput = leasingForm.querySelector(
+          ".leasing-consent input[type='checkbox']",
+        );
+        const requiredControls = Array.from(
+          leasingForm.querySelectorAll("input, select"),
+        );
+        let currentStep = 0;
+
+        requiredControls.forEach((control) => {
+          control.required = true;
+        });
+
+        if (consentInput) {
+          consentInput.checked = false;
+        }
+
+        const validateControls = (controls) => {
+          const invalidControl = controls.find((control) => {
+            if (control.disabled) return false;
+            return !control.checkValidity();
+          });
+
+          if (!invalidControl) return true;
+
+          invalidControl.reportValidity();
+          invalidControl.focus({ preventScroll: true });
+          return false;
+        };
+
+        const validateCurrentStep = () => {
+          const activeFieldset = fieldsets[currentStep];
+          if (!activeFieldset) return true;
+
+          return validateControls(
+            Array.from(activeFieldset.querySelectorAll("input, select")),
+          );
+        };
+
+        const scrollToMobileStep = () => {
+          const stepOffset = currentStep === 0 ? 0 : 200;
+          const heroTop =
+            (leasingHero?.getBoundingClientRect().top || 0) + window.scrollY;
+
+          window.scrollTo({
+            top: Math.max(heroTop + stepOffset, 0),
+            behavior: "smooth",
+          });
+        };
+
+        const renderMobileStep = () => {
+          const isMobile = mobileQuery.matches;
+
+          leasingForm.classList.toggle("is-mobile-stepper", isMobile);
+
+          if (!isMobile) {
+            leasingForm.removeAttribute("data-current-step");
+            leasingHero?.removeAttribute("data-current-step");
+            fieldsets.forEach((fieldset) => {
+              fieldset.removeAttribute("data-step-active");
+            });
+            return;
+          }
+
+          leasingForm.dataset.currentStep = String(currentStep + 1);
+          if (leasingHero) {
+            leasingHero.dataset.currentStep = String(currentStep + 1);
+          }
+          fieldsets.forEach((fieldset, index) => {
+            fieldset.dataset.stepActive = String(index === currentStep);
+          });
+        };
+
+        submitButton?.addEventListener("click", (event) => {
+          if (!mobileQuery.matches) {
+            return;
+          }
+
+          if (currentStep >= fieldsets.length - 1) {
+            if (!validateControls(requiredControls)) {
+              event.preventDefault();
+            }
+            return;
+          }
+
+          if (!validateCurrentStep()) {
+            event.preventDefault();
+            return;
+          }
+
+          event.preventDefault();
+          currentStep += 1;
+          renderMobileStep();
+          scrollToMobileStep();
+        });
+
+        leasingForm.addEventListener("submit", (event) => {
+          if (validateControls(requiredControls)) return;
+
+          event.preventDefault();
+        });
+
+        backButton?.addEventListener("click", () => {
+          if (!mobileQuery.matches || currentStep === 0) {
+            return;
+          }
+
+          currentStep -= 1;
+          renderMobileStep();
+          scrollToMobileStep();
+        });
+
+        mobileQuery.addEventListener("change", renderMobileStep);
+        renderMobileStep();
+      }
+
+      document
+        .querySelectorAll(".leasing-file-field input[type='file']")
+        .forEach((input) => {
+          input.addEventListener("change", () => {
+            const field = input.closest(".leasing-file-field");
+            field.dataset.fileLabel =
+              input.files && input.files.length
+                ? input.files[0].name
+                : "Ngarko dokumentin";
+          });
+        });
+    </script>
   </body>
 </html>
