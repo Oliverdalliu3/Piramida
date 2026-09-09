@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contact Us</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
+    <link rel="stylesheet" href="./assets/css/contactus.css" />
+  </head>
+
+  <body class="min-h-screen overflow-x-hidden text-white">
+    <div class="desktop-page-background contact-background">
+      <!-- =========================================
+           HEADER
+      ========================================== -->
+
+      <header
+        class="site-header absolute left-0 top-0 z-50 w-full bg-transparent"
+      >
+        <nav class="header-inner">
+          <a href="/" class="header-logo" aria-label="Piramida homepage">
+            <img src="./assets/images/logo piramida.svg" alt="Piramida logo" />
+          </a>
+
+          <button
+            id="openMenu"
+            class="menu-open-button"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <img
+              src="./assets/images/menu icon.svg"
+              alt=""
+              class="h-8 w-8 object-contain"
+              aria-hidden="true"
+            />
+          </button>
+        </nav>
+      </header>
+
+      <!-- =========================================
+           FULLSCREEN MENU
+      ========================================== -->
+
+      <div id="mobileMenu" aria-hidden="true">
+        <button
+          id="closeMenu"
+          class="menu-close-button"
+          type="button"
+          aria-label="Close menu"
+        >
+          <img
+            src="./assets/images/Cross.svg"
+            alt=""
+            class="h-8 w-8 object-contain"
+            aria-hidden="true"
+          />
+        </button>
+
+        <div class="menu-layout">
+          <!-- Menu left side -->
+
+          <section class="menu-left">
+            <img
+              src="./assets/images/logo piramida.svg"
+              alt="Piramida logo"
+              class="menu-logo"
+            />
+
+            <nav class="menu-main-navigation" aria-label="Main navigation">
+              <ul>
+                <li>
+                  <a href="#" class="mobile-main-link"> Education </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Innovation </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Business </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Art &amp; Culture </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Events </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Attractions </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mobile-main-link"> Museum </a>
+                </li>
+
+                <li>
+                  <a
+                    href="./rent-space.html"
+                    class="mobile-main-link"
+                    aria-current="page"
+                  >
+                    Rent a Space
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </section>
+
+          <!-- Menu right side -->
+
+          <section class="menu-right">
+            <div class="menu-right-content">
+              <nav
+                class="menu-secondary-links"
+                aria-label="Secondary navigation"
+              >
+                <a href="#" class="mobile-small-link"> About us </a>
+
+                <a href="#" class="mobile-small-link"> News </a>
+
+                <a href="#" class="mobile-small-link"> Careers </a>
+
+                <a
+                  href="./contactus.html"
+                  class="mobile-small-link"
+                  aria-current="page"
+                >
+                  Contact
+                </a>
+              </nav>
+
+              <div class="menu-bottom-content">
+                <div class="menu-policy-links">
+                  <a href="#" class="mobile-footer-link">
+                    Terms &amp; Conditions
+                  </a>
+
+                  <a href="#" class="mobile-footer-link"> Privacy Policy </a>
+                </div>
+
+                <div class="menu-social-links">
+                  <a href="#" aria-label="Facebook">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M14 8H17V4H14C10.7 4 9 6 9 9V11H6V15H9V22H13V15H16L17 11H13V9C13 8.3 13.3 8 14 8Z"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+
+                  <a href="#" aria-label="Instagram">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="4"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      />
+
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <main class="contact-page" aria-labelledby="contact-title">
+        <h1 id="contact-title" class="contact-title">
+          <span>Contact</span><span>Us</span>
+        </h1>
+
+        <section class="contact-layout">
+          <div class="contact-info">
+            <h2>Let's get in touch</h2>
+            <p class="contact-intro">
+              Whether it's an event, an idea, or a collaboration, we're always
+              open to connecting, sharing perspectives, building partnerships
+              and bringing new things to life.
+            </p>
+
+            <div class="contact-details">
+              <div>
+                <h3>Contact Info</h3>
+                <a href="mailto:info@piramida.edu.al">info@piramida.edu.al</a>
+                <a href="tel:+355690000000">+355 69 000 00 00</a>
+              </div>
+
+              <div>
+                <h3>Address</h3>
+                <p>Bulevardi Deshmoret e Kombit 5, Tirane, Albania</p>
+              </div>
+            </div>
+
+            <div class="contact-socials" aria-label="Social links">
+              <a href="#" aria-label="Facebook">
+                <img src="./assets/images/facebook.svg" alt="" />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <img src="./assets/images/Ig.svg" alt="" />
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form-shell">
+            <form class="contact-form" action="#" method="post">
+              <h2>Contact us</h2>
+              <p>
+                We're always happy to connect. Reach out and our team will get
+                back to you as soon as possible.
+              </p>
+
+              <div class="contact-form-row">
+                <label>
+                  <span>Your Name</span>
+                  <input name="name" type="text" placeholder="Your Name" />
+                </label>
+
+                <label>
+                  <span>Email Address</span>
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Email Address"
+                  />
+                </label>
+              </div>
+
+              <label>
+                <span>Message</span>
+                <textarea name="message" rows="4"></textarea>
+              </label>
+
+              <button type="submit">
+                <span>Submit Request</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M13 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <section class="contact-map" aria-label="Piramida location map">
+      <div class="contact-map-frame" aria-hidden="true">
+        <iframe
+          src="https://maps.google.com/maps?ll=41.3275,19.8187&z=16&t=m&hl=en&output=embed"
+          title="Piramida Tirana map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <a
+        class="contact-map-marker"
+        href="https://www.google.com/maps/search/?api=1&query=Piramida+Tirana"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Open Piramida Tirana in Google Maps"
+      >
+        <span class="contact-map-pin" aria-hidden="true"></span>
+        <img src="./assets/images/logo piramida.svg" alt="" />
+        <span>Google Map</span>
+      </a>
+    </section>
+
+    <footer
+      id="footer"
+      class="relative overflow-hidden bg-[#000929] text-white md:bg-[radial-gradient(circle_at_top_right,#000000_0%,#000000_18%,#020503_55%,#020503_100%)]"
+    >
+      <!-- Mobile glow effects -->
+      <div class="glow-top-1 md:hidden" aria-hidden="true"></div>
+      <div class="glow-top-2 md:hidden" aria-hidden="true"></div>
+      <div class="glow-left md:hidden" aria-hidden="true"></div>
+
+      <!-- Desktop glow effects -->
+      <div class="desktop-glow-left hidden md:block" aria-hidden="true"></div>
+      <div class="desktop-glow-bottom hidden md:block" aria-hidden="true"></div>
+      <div
+        class="desktop-glow-bottom-center hidden md:block"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="desktop-glow-bottom-right hidden md:block"
+        aria-hidden="true"
+      ></div>
+      <!-- Mobile footer -->
+      <div class="relative z-10 mx-auto max-w-7xl px-[1.5rem] py-10 md:hidden">
+        <a href="/" class="inline-block">
+          <img
+            src="./assets/images/logo piramida.svg"
+            alt="Piramida"
+            class="mt-2 h-[22px] w-[50px] object-contain"
+          />
+        </a>
+
+        <div class="mt-3 text-[14px] font-normal tracking-wide">
+          Reimagining space. Inspiring creativity.
+        </div>
+
+        <div class="mt-12 flex items-end justify-between gap-6">
+          <div>
+            <div class="text-[14px] uppercase tracking-wide">Quick Contact</div>
+
+            <a
+              href="mailto:hello@piramida.edu.al"
+              class="mt-2 block text-[14px] tracking-wide text-[#CBFF00] hover:underline"
+            >
+              hello@piramida.edu.al
+            </a>
+
+            <a
+              href="tel:+3551234567890"
+              class="mt-2 block text-[14px] tracking-wide text-[#CBFF00] hover:underline"
+            >
+              +355 1234567890
+            </a>
+          </div>
+
+          <div class="flex shrink-0 items-center gap-5">
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+            >
+              <img
+                src="./assets/images/facebook.svg"
+                class="h-5 w-auto object-contain"
+                alt=""
+              />
+            </a>
+
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+            >
+              <img
+                src="./assets/images/Ig.svg"
+                class="h-5 w-auto object-contain"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16">
+          <div
+            class="text-center text-[12px] font-normal uppercase tracking-wide"
+          >
+            Partnerët tanë
+          </div>
+
+          <div
+            class="relative left-1/2 mt-3 w-screen -translate-x-1/2 border-t border-white/10"
+            aria-hidden="true"
+          ></div>
+
+          <div class="mt-4 flex items-center justify-center gap-3">
+            <img
+              src="./assets/images/tumo-finale2 1.svg"
+              class="h-8 w-[75px] object-contain"
+              alt="Tumo"
+            />
+            <img
+              src="./assets/images/aadffinalk-logo 1.svg"
+              class="h-8 w-[75px] object-contain"
+              alt="AADF"
+            />
+            <img
+              src="./assets/images/bashkia2 1.svg"
+              class="h-8 w-[75px] object-contain"
+              alt="Bashkia Tiranë"
+            />
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-[11px] tracking-wide text-white/30">
+          © 2026 Piramida. All rights reserved.
+        </div>
+      </div>
+
+      <!-- Desktop footer -->
+      <div
+        class="relative z-10 mx-auto hidden max-w-[1920px] bg-transparent px-[8%] pt-[6%] md:block xl:px-[8.2%] pb-[2%]"
+      >
+        <div
+          class="grid grid-cols-[minmax(0,1fr)_auto_auto] items-start gap-[80px] xl:gap-[120px]"
+        >
+          <div>
+            <a href="/" class="inline-block">
+              <img
+                src="./assets/images/logo piramida.svg"
+                alt="Piramida"
+                class="h-[40px] w-[90px] object-contain"
+              />
+            </a>
+
+            <div class="mt-6 text-[16px] font-normal tracking-wide">
+              Reimagining space. Inspiring creativity.
+            </div>
+
+            <div class="mt-16">
+              <div
+                class="text-[12px] font-normal uppercase tracking-wide text-white/90"
+              >
+                Partnerët tanë
+              </div>
+
+              <div class="-ml-[25px] mt-5 flex items-start justify-start">
+                <img
+                  src="./assets/images/aadffinalk-logo 1.svg"
+                  class="h-[40px] w-[102px] object-contain"
+                  alt="AADF"
+                />
+                <img
+                  src="./assets/images/bashkia2 1.svg"
+                  class="h-[40px] w-[102px] object-contain"
+                  alt="Bashkia Tiranë"
+                />
+                <img
+                  src="./assets/images/tumo-finale2 1.svg"
+                  class="h-[40px] w-[102px] object-contain"
+                  alt="Tumo"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="min-w-[170px]">
+            <div class="text-[18px] font-normal tracking-wide">Company</div>
+
+            <nav
+              class="mt-5 flex flex-col gap-4 text-[14px]"
+              aria-label="Footer company navigation"
+            >
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>About Us</span>
+              </a>
+
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>Careers</span>
+              </a>
+
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>Terms &amp; Conditions</span>
+              </a>
+
+              <a href="#" class="group flex items-center">
+                <span
+                  class="w-0 -translate-x-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:mr-2 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+                <span>Privacy Policy</span>
+              </a>
+            </nav>
+          </div>
+
+          <div class="min-w-[240px] border-l border-white/10 pl-[70px]">
+            <div class="text-[18px] font-normal tracking-wide opacity-85">
+              Quick Contact
+            </div>
+
+            <a
+              href="mailto:hello@piramida.edu.al"
+              class="mt-4 block text-[16px] tracking-wide text-[#CBFF00] hover:underline opacity-85"
+            >
+              hello@piramida.edu.al
+            </a>
+
+            <a
+              href="tel:+3551234567890"
+              class="mt-3 block text-[16px] tracking-wide hover:underline opacity-85"
+            >
+              +355 1234567890
+            </a>
+
+            <div class="mt-9 flex items-center gap-6">
+              <a
+                href="#"
+                aria-label="Facebook"
+                class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+              >
+                <img
+                  src="./assets/images/facebook.svg"
+                  class="h-[25px] w-[14px] object-contain"
+                  alt=""
+                />
+              </a>
+
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="flex h-8 w-8 items-center justify-center rounded-sm transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00]"
+              >
+                <img
+                  src="./assets/images/Ig.svg"
+                  class="h-[21px] w-[21px] object-contain"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-[120px]">
+          <span
+            class="inline-flex rounded-full border border-white/50 px-5 py-2 text-[14px] font-normal uppercase tracking-wide"
+          >
+            Lorem ipsum text
+          </span>
+
+          <div class="mt-8 flex items-center justify-between gap-8">
+            <div
+              class="text-[90px] font-normal uppercase leading-none tracking-tight xl:text-[120px]"
+            >
+              Piramida
+            </div>
+
+            <a
+              href="#top"
+              aria-label="Back to top"
+              class="group flex h-[105px] w-[105px] shrink-0 items-center justify-center rounded-full border border-white/50 transition-colors duration-300 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CBFF00] focus-visible:ring-offset-4 focus-visible:ring-offset-[#020503]"
+            >
+              <svg
+                class="h-[55px] w-[55px] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M14 50L49 15"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M25 15H49V39"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./assets/js/menu.js" defer></script>
+  </body>
+</html>
